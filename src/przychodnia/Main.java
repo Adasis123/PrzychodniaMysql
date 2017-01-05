@@ -25,6 +25,7 @@ public class Main extends Application {
         this.primaryStage.setMinWidth(1100);
         this.primaryStage.setMinHeight(700);
         initRootLayout();
+        showVisits();
 
     }
 
@@ -32,7 +33,7 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
-        rootLayout = (BorderPane) loader.load();
+        rootLayout = loader.load();
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -41,6 +42,7 @@ public class Main extends Application {
     }
 
     public static void showVisits() throws IOException {
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/VisitsView.fxml"));
         AnchorPane testPane = loader.load();
@@ -49,6 +51,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
         launch(args);
     }
 }
