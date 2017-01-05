@@ -1,57 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przychodnia.controller.RootLayoutController">
-   <children>
-      <BorderPane fx:id="rootPane" prefHeight="200.0" prefWidth="200.0">
-         <left>
-            <VBox prefHeight="400.0" prefWidth="90.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="btnVisits" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goVisits" prefHeight="113.0" prefWidth="154.0" text="Wizyty">
-                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnPatients" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goPatients" prefHeight="113.0" prefWidth="154.0" text="Pacjenci">
-                     <graphic>
-                        <ImageView fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/family-of-heterosexual-couple.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnDoctors" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goDoctors" prefHeight="113.0" prefWidth="154.0" text="Lekarze">
-                     <graphic>
-                        <ImageView fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/doctor-with-stethoscope.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnExit" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goExit" prefHeight="113.0" prefWidth="154.0" text="Koniec">
-                     <graphic>
-                        <ImageView fitHeight="52.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/exit.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
-         </left>
-      </BorderPane>
-   </children>
-</StackPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przychodnia.controller.RootLayoutController">
+   <left>
+      <VBox alignment="CENTER_LEFT" prefHeight="534.0" prefWidth="117.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="btnVisits" contentDisplay="TOP" onAction="#goVisits" prefHeight="125.0" prefWidth="129.0" text="Wizyty">
+               <graphic>
+                  <ImageView fitHeight="74.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnPatients" contentDisplay="TOP" onAction="#goPatients" prefHeight="125.0" prefWidth="129.0" text="Pacjenci">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/family-of-heterosexual-couple.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnDoctors" contentDisplay="TOP" onAction="#goDoctors" prefHeight="125.0" prefWidth="129.0" text="Lekarze">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/doctor-with-stethoscope.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnExit" buttonType="RAISED" contentDisplay="TOP" onAction="#goExit" prefHeight="125.0" prefWidth="129.0" text="Koniec">
+               <graphic>
+                  <ImageView fitHeight="88.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
