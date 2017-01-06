@@ -6,8 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import przychodnia.util.DBUtil;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by adam on 04/01/2017.
@@ -18,7 +20,7 @@ public class Main extends Application {
     private static BorderPane rootLayout;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, SQLException, ClassNotFoundException {
 
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Przychodnia");
@@ -26,7 +28,7 @@ public class Main extends Application {
         this.primaryStage.setMinHeight(700);
         initRootLayout();
         showVisits();
-
+        DBUtil.DBConnect();
     }
 
     public void initRootLayout() throws IOException {

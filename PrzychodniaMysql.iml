@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.jfoenix:jfoenix:1.0.01" level="project" />
+    <orderEntry type="library" name="mysql:mysql-connector-java:6.0.5" level="project" />
+    <orderEntry type="library" name="com.hynnet:oracle-driver-ojdbc6:12.1.0.1" level="project" />
   </component>
 </module>
