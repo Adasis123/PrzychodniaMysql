@@ -9,7 +9,6 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
@@ -70,10 +69,6 @@ public class VisitsController implements Initializable {
         visitsTree.setRoot(root);
         visitsTree.setShowRoot(false);
 
-    }
-
-    @FXML
-    private void filter(ActionEvent event) {
     }
 
     class Visit extends RecursiveTreeObject<Visit> {

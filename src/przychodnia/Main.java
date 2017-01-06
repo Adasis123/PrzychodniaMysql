@@ -29,6 +29,7 @@ public class Main extends Application {
         initRootLayout();
         showVisits();
         DBUtil.DBConnect();
+
     }
 
     public void initRootLayout() throws IOException {
