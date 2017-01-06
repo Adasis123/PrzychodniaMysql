@@ -22,7 +22,7 @@ public class RootLayoutController {
     public void goVisits() throws IOException, SQLException {
         DBUtil.DBDisconnect();
         Main.showVisits();
-        
+
     }
 
     public void goPatients() {
