@@ -15,17 +15,17 @@ public class PatientsDAO {
     //*******************************
     //SELECT Employees
     //*******************************
-    public static ObservableList<Patients> searchEmployees () throws SQLException, ClassNotFoundException {
-        //Declare a SELECT statement
+    public static ObservableList<Patients> searchPatients () throws SQLException, ClassNotFoundException {
+
         String selectStmt = "SELECT * FROM pacjenci";
 
         //Execute SELECT statement
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsEmps = DBUtil.dbExecuteQuery(selectStmt);
+            ResultSet rsPatients = DBUtil.dbExecuteQuery(selectStmt);
 
             //Send ResultSet to the getEmployeeList method and get employee object
-            ObservableList<Patients> patientsList = getEmployeeList(rsEmps);
+            ObservableList<Patients> patientsList = getPatientsList(rsPatients);
 
             //Return employee object
             return patientsList;
@@ -37,7 +37,7 @@ public class PatientsDAO {
     }
 
     //Select * from employees operation
-    private static ObservableList<Patients> getEmployeeList(ResultSet rs) throws SQLException, ClassNotFoundException {
+    private static ObservableList<Patients> getPatientsList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Employee objects
         ObservableList<Patients> patientsList = FXCollections.observableArrayList();
 

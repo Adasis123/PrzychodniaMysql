@@ -35,7 +35,7 @@ public class PatientsController extends PatientsDAO {
     private void show() throws SQLException, ClassNotFoundException {
         try {
             //Get all Employees information
-            ObservableList<Patients> empData = PatientsDAO.searchEmployees();
+            ObservableList<Patients> empData = PatientsDAO.searchPatients();
             //Populate Employees on TableView
             populateEmployees(empData);
         } catch (SQLException e){
