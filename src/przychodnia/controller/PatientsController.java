@@ -4,8 +4,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
-import przychodnia.Main;
 import przychodnia.model.Patients;
 import przychodnia.model.PatientsDAO;
 
@@ -15,7 +13,6 @@ import java.sql.SQLException;
  * Created by adam on 04/01/2017.
  */
 public class PatientsController extends PatientsDAO {
-
 
     @FXML
     private  TableView PatientsView;
@@ -35,14 +32,7 @@ public class PatientsController extends PatientsDAO {
     private TableColumn<Patients, String> pPesel;
 
     @FXML
-    private AnchorPane patientsPane;
-
-
-    private Main mainApp;
-
-
-
-    public void show() throws SQLException, ClassNotFoundException {
+    private void show() throws SQLException, ClassNotFoundException {
         try {
             //Get all Employees information
             ObservableList<Patients> empData = PatientsDAO.searchEmployees();
@@ -74,11 +64,7 @@ public class PatientsController extends PatientsDAO {
         pStreet.setCellValueFactory(cellData -> cellData.getValue().pStreetProperty());
         pNumber.setCellValueFactory(cellData -> cellData.getValue().pNumberProperty());
         pPesel.setCellValueFactory(cellData -> cellData.getValue().pPeselProperty());
-        ObservableList<Patients> empData = PatientsDAO.searchEmployees();
-        populateEmployees(empData);
-
-
-
+        show();
 
     }
 
@@ -87,7 +73,6 @@ public class PatientsController extends PatientsDAO {
         //Set items to the employeeTable
         PatientsView.setItems(empData);
     }
-
 }
 
 
