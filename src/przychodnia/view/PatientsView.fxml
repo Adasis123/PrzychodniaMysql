@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="patientsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przychodnia.controller.PatientsController">
+   <children>
+      <TableView fx:id="PatientsView" layoutX="33.0" layoutY="65.0" prefHeight="316.0" prefWidth="593.0">
+        <columns>
+          <TableColumn fx:id="pId" prefWidth="75.0" text="IdPacjent" />
+          <TableColumn fx:id="pSurname" prefWidth="75.0" text="Nazwisko" />
+            <TableColumn fx:id="pName" prefWidth="75.0" text="Imię" />
+            <TableColumn fx:id="pCity" prefWidth="75.0" text="Miasto" />
+            <TableColumn fx:id="pStreet" prefWidth="75.0" text="Ulica" />
+            <TableColumn fx:id="pNumber" prefWidth="75.0" text="Numer " />
+            <TableColumn fx:id="pPesel" prefWidth="75.0" text="Pesel" />
+        </columns>
+      </TableView>
+      <Button fx:id="testBtn" layoutX="271.0" layoutY="509.0" mnemonicParsing="false" onAction="#show" text="Button" />
+   </children>
+</AnchorPane>

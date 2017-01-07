@@ -2,7 +2,6 @@ package przychodnia.controller;
 
 import javafx.fxml.FXML;
 import przychodnia.Main;
-import przychodnia.util.DBUtil;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,10 +18,8 @@ public class RootLayoutController {
     }
 
 
-    public void goVisits() throws IOException, SQLException {
-        DBUtil.DBDisconnect();
+    public void goVisits() throws IOException, SQLException, ClassNotFoundException {
         Main.showVisits();
-
     }
 
     public void goPatients() {

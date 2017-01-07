@@ -1,5 +1,6 @@
 package przychodnia.model;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,111 +9,111 @@ import javafx.beans.property.StringProperty;
 /**
  * Created by adam on 04/01/2017.
  */
-public class Patients {
+public class Patients extends RecursiveTreeObject<Patients> {
 
-    private IntegerProperty pacjentId;
-    private StringProperty pacjentNazwisko;
-    private StringProperty pacjentImie;
-    private StringProperty pacjentMiasto;
-    private StringProperty pacjentUlica;
-    private StringProperty pacjentNumer;
-    private StringProperty pacjentPesel;
 
+    public IntegerProperty pId;
+    public StringProperty pSurname;
+    public StringProperty pName;
+    public StringProperty pCity;
+    public StringProperty pStreet;
+    public StringProperty pNumber;
+    public StringProperty pPesel;
 
     public Patients() {
-
-        this.pacjentId = new SimpleIntegerProperty();
-        this.pacjentNazwisko = new SimpleStringProperty();
-        this.pacjentImie = new SimpleStringProperty();
-        this.pacjentMiasto = new SimpleStringProperty();
-        this.pacjentUlica = new SimpleStringProperty();
-        this.pacjentNumer = new SimpleStringProperty();
-        this.pacjentPesel = new SimpleStringProperty();
-
+        this.pId = new SimpleIntegerProperty();
+        this.pSurname = new SimpleStringProperty();
+        this.pName = new SimpleStringProperty();
+        this.pCity = new SimpleStringProperty();
+        this.pStreet = new SimpleStringProperty();
+        this.pNumber = new SimpleStringProperty();
+        this.pPesel = new SimpleStringProperty();
     }
 
-    public void setPacjentId(int pacjentId) {
-        this.pacjentId.set(pacjentId);
+
+    public String getpSurname() {
+        return pSurname.get();
     }
 
-    public void setPacjentNazwisko(String pacjentNazwisko) {
-        this.pacjentNazwisko.set(pacjentNazwisko);
+    public StringProperty pSurnameProperty() {
+        return pSurname;
     }
 
-    public void setPacjentImie(String pacjentImie) {
-        this.pacjentImie.set(pacjentImie);
+    public String getpName() {
+        return pName.get();
     }
 
-    public void setPacjentMiasto(String pacjentMiasto) {
-        this.pacjentMiasto.set(pacjentMiasto);
+    public StringProperty pNameProperty() {
+        return pName;
     }
 
-    public void setPacjentUlica(String pacjentUlica) {
-        this.pacjentUlica.set(pacjentUlica);
+    public String getpCity() {
+        return pCity.get();
     }
 
-    public void setPacjentNumer(String pacjentNumer) {
-        this.pacjentNumer.set(pacjentNumer);
+    public StringProperty pCityProperty() {
+        return pCity;
     }
 
-    public void setPacjentPesel(String pacjentPesel) {
-        this.pacjentPesel.set(pacjentPesel);
+    public String getpStreet() {
+        return pStreet.get();
     }
 
-    public int getPacjentId() {
-        return pacjentId.get();
+    public StringProperty pStreetProperty() {
+        return pStreet;
     }
 
-    public IntegerProperty pacjentIdProperty() {
-        return pacjentId;
+    public String getpNumber() {
+        return pNumber.get();
     }
 
-    public String getPacjentNazwisko() {
-        return pacjentNazwisko.get();
+    public StringProperty pNumberProperty() {
+        return pNumber;
     }
 
-    public StringProperty pacjentNazwiskoProperty() {
-        return pacjentNazwisko;
+    public String getpPesel() {
+        return pPesel.get();
     }
 
-    public String getPacjentImie() {
-        return pacjentImie.get();
+    public StringProperty pPeselProperty() {
+        return pPesel;
     }
 
-    public StringProperty pacjentImieProperty() {
-        return pacjentImie;
+    public void setpSurname(String pSurname) {
+        this.pSurname.set(pSurname);
     }
 
-    public String getPacjentMiasto() {
-        return pacjentMiasto.get();
+    public void setpName(String pName) {
+        this.pName.set(pName);
     }
 
-    public StringProperty pacjentMiastoProperty() {
-        return pacjentMiasto;
+    public void setpCity(String pCity) {
+        this.pCity.set(pCity);
     }
 
-    public String getPacjentUlica() {
-        return pacjentUlica.get();
+    public void setpStreet(String pStreet) {
+        this.pStreet.set(pStreet);
     }
 
-    public StringProperty pacjentUlicaProperty() {
-        return pacjentUlica;
+    public void setpNumber(String pNumber) {
+        this.pNumber.set(pNumber);
     }
 
-    public String getPacjentNumer() {
-        return pacjentNumer.get();
+    public void setpPesel(String pPesel) {
+        this.pPesel.set(pPesel);
     }
 
-    public StringProperty pacjentNumerProperty() {
-        return pacjentNumer;
+    public int getpId() {
+        return pId.get();
     }
 
-    public String getPacjentPesel() {
-        return pacjentPesel.get();
+    public IntegerProperty pIdProperty() {
+        return pId;
     }
 
-    public StringProperty pacjentPeselProperty() {
-        return pacjentPesel;
+    public void setpId(int pId) {
+        this.pId.set(pId);
     }
+
 
 }

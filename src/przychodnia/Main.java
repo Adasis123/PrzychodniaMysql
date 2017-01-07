@@ -26,13 +26,13 @@ public class Main extends Application {
         this.primaryStage.setTitle("Przychodnia");
         this.primaryStage.setMinWidth(1100);
         this.primaryStage.setMinHeight(700);
+        DBUtil.DBConnect();
         initRootLayout();
         showVisits();
-        DBUtil.DBConnect();
 
     }
 
-    public void initRootLayout() throws IOException {
+    public void initRootLayout() throws IOException, SQLException, ClassNotFoundException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/RootLayout.fxml"));
@@ -47,11 +47,12 @@ public class Main extends Application {
     public static void showVisits() throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/VisitsView.fxml"));
+        loader.setLocation(Main.class.getResource("view/PatientsView.fxml"));
         AnchorPane testPane = loader.load();
         rootLayout.setCenter(testPane);
 
     }
+
 
     public static void main(String[] args) {
 
