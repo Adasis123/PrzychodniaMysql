@@ -4,9 +4,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import przychodnia.Main;
 import przychodnia.model.Patients;
 import przychodnia.model.PatientsDAO;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 /**
@@ -42,6 +44,7 @@ public class PatientsController extends PatientsDAO {
             System.out.println("Error occurred while getting employees information from DB.\n" + e);
             throw e;
         }
+
     }
 
 
@@ -64,6 +67,7 @@ public class PatientsController extends PatientsDAO {
         pStreet.setCellValueFactory(cellData -> cellData.getValue().pStreetProperty());
         pNumber.setCellValueFactory(cellData -> cellData.getValue().pNumberProperty());
         pPesel.setCellValueFactory(cellData -> cellData.getValue().pPeselProperty());
+//        insertPatient("Karolak", "Zbigniew", "Bytom", "Dębowa", "144/5", "55102348479");
         show();
 
     }
@@ -72,6 +76,11 @@ public class PatientsController extends PatientsDAO {
     private void populateEmployees (ObservableList<Patients> empData) throws ClassNotFoundException {
         //Set items to the employeeTable
         PatientsView.setItems(empData);
+    }
+
+    @FXML
+    public void addPatient() throws IOException, SQLException, ClassNotFoundException {
+        Main.addPatient();
     }
 }
 

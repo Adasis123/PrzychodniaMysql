@@ -57,4 +57,23 @@ public class PatientsDAO {
         return patientsList;
     }
 
+
+    //*************************************
+    //INSERT an employee
+    //*************************************
+    public static void insertPatient (String pSurname, String pName, String pCity, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
+        //Declare a DELETE statement
+        String updateStmt = "INSERT INTO pacjenci " +
+                "(pacjentNazwisko, pacjentImie, pacjentMiasto, pacjentUlica, pacjentNumer, pacjentPesel)" +
+                " VALUES ('"+pSurname+"', '"+pName+"', '"+pCity+"','"+
+                " "+pStreet+"', '"+pNumber+"', '"+pPesel+"')";
+        //Execute DELETE operation
+        try {
+            DBUtil.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+    }
+
 }

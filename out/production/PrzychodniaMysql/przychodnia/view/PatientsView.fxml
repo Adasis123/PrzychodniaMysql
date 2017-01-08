@@ -27,7 +27,7 @@
       <Button fx:id="testBtn" layoutX="271.0" layoutY="509.0" mnemonicParsing="false" onAction="#show" text="Button" />
       <VBox layoutX="680.0" layoutY="65.0" prefHeight="372.0" prefWidth="119.0">
          <children>
-            <JFXButton fx:id="btnAddPatient" contentDisplay="TOP" prefHeight="83.0" prefWidth="125.0" text="Dodaj">
+            <JFXButton fx:id="newPatientBtn" contentDisplay="TOP" onAction="#addPatient" prefHeight="83.0" prefWidth="125.0" text="Dodaj">
                <graphic>
                   <ImageView fitHeight="66.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                      <image>

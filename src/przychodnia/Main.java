@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import przychodnia.util.DBUtil;
 
@@ -18,6 +19,7 @@ public class Main extends Application {
 
     private Stage primaryStage;
     private static BorderPane rootLayout;
+    private static Stage modalPatient;
 
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException, ClassNotFoundException {
@@ -29,6 +31,7 @@ public class Main extends Application {
         DBUtil.DBConnect();
         initRootLayout();
         showVisits();
+
 
     }
 
@@ -54,6 +57,23 @@ public class Main extends Application {
     }
 
 
+    public static Stage getModalPatient() {
+        return modalPatient;
+    }
+
+    public static void addPatient() throws IOException {
+
+        modalPatient = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/AddPatientView.fxml"));
+        AnchorPane addPatientPane = loader.load();
+        Scene addPatient = new Scene(addPatientPane);
+        modalPatient.setScene(addPatient);
+        modalPatient.initModality(Modality.APPLICATION_MODAL);
+        modalPatient.show();
+
+    }
+    
     public static void main(String[] args) {
 
         launch(args);

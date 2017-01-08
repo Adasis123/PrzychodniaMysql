@@ -73,6 +73,30 @@ public class DBUtil {
         //Return CachedRowSet
         return crs;
     }
+
+    //DB Execute Update (For Update/Insert/Delete) Operation
+    public static void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
+        //Declare statement as null
+        Statement stmt = null;
+        try {
+            //Connect to DB (Establish Oracle Connection)
+            DBConnect();
+            //Create Statement
+            stmt = connection.createStatement();
+            //Run executeUpdate operation with given sql statement
+            stmt.executeUpdate(sqlStmt);
+        } catch (SQLException e) {
+            System.out.println("Problem occurred at executeUpdate operation : " + e);
+            throw e;
+        } finally {
+            if (stmt != null) {
+                //Close statement
+                stmt.close();
+            }
+            //Close connection
+//            DBDisconnect();
+        }
+    }
 }
 
 
