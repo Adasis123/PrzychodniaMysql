@@ -12,6 +12,8 @@ import java.sql.SQLException;
  */
 public class PatientsDAO {
 
+    public static Integer row_number;
+
     //*******************************
     //SELECT Employees
     //*******************************
@@ -40,9 +42,11 @@ public class PatientsDAO {
     private static ObservableList<Patients> getPatientsList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Employee objects
         ObservableList<Patients> patientsList = FXCollections.observableArrayList();
-
+        row_number = 0;
         while (rs.next()) {
+            row_number ++;
             Patients pat = new Patients();
+            pat.setpIndex(row_number);
             pat.setpId(rs.getInt("pacjentId"));
             pat.setpSurname(rs.getString("pacjentNazwisko"));
             pat.setpName(rs.getString("pacjentImie"));
@@ -61,11 +65,11 @@ public class PatientsDAO {
     //*************************************
     //INSERT an employee
     //*************************************
-    public static void insertPatient (String pSurname, String pName, String pCity, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
+    public static void insertPatient (String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
         //Declare a DELETE statement
         String updateStmt = "INSERT INTO pacjenci " +
-                "(pacjentNazwisko, pacjentImie, pacjentMiasto, pacjentUlica, pacjentNumer, pacjentPesel)" +
-                " VALUES ('"+pSurname+"', '"+pName+"', '"+pCity+"','"+
+                "(pacjentNazwisko, pacjentImie, pacjentMiasto, pacjentKodPocztowy, pacjentUlica, pacjentNumer, pacjentPesel)" +
+                " VALUES ('"+pSurname+"', '"+pName+"', '"+pCity+"', '"+pZipCode+"', '"+
                 " "+pStreet+"', '"+pNumber+"', '"+pPesel+"')";
         //Execute DELETE operation
         try {
@@ -75,5 +79,7 @@ public class PatientsDAO {
             throw e;
         }
     }
+
+
 
 }

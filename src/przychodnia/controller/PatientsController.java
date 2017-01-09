@@ -1,6 +1,7 @@
 package przychodnia.controller;
 
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
 public class PatientsController extends PatientsDAO {
 
     @FXML
-    private  TableView PatientsView;
+    private TableView<Patients> PatientsView;
     @FXML
     private TableColumn<Patients, Integer> pId;
     @FXML
@@ -32,21 +33,24 @@ public class PatientsController extends PatientsDAO {
     private TableColumn<Patients, String> pNumber;
     @FXML
     private TableColumn<Patients, String> pPesel;
+    @FXML
+    private TableColumn<Patients, Integer> pIndex;
 
     @FXML
     private void show() throws SQLException, ClassNotFoundException {
         try {
             //Get all Employees information
             ObservableList<Patients> empData = PatientsDAO.searchPatients();
+            System.out.println(empData);
             //Populate Employees on TableView
             populateEmployees(empData);
+
         } catch (SQLException e){
             System.out.println("Error occurred while getting employees information from DB.\n" + e);
             throw e;
         }
 
     }
-
 
     public void initialize () throws SQLException, ClassNotFoundException {
         /*
@@ -60,17 +64,18 @@ public class PatientsController extends PatientsDAO {
         must have an additional asObject():
         */
 
-        pId.setCellValueFactory(cellData -> cellData.getValue().pIdProperty().asObject());
+        pIndex.setCellValueFactory(cellData -> cellData.getValue().pIndexProperty().asObject());
         pSurname.setCellValueFactory(cellData -> cellData.getValue().pSurnameProperty());
         pName.setCellValueFactory(cellData -> cellData.getValue().pNameProperty());
         pCity.setCellValueFactory(cellData -> cellData.getValue().pCityProperty());
         pStreet.setCellValueFactory(cellData -> cellData.getValue().pStreetProperty());
         pNumber.setCellValueFactory(cellData -> cellData.getValue().pNumberProperty());
         pPesel.setCellValueFactory(cellData -> cellData.getValue().pPeselProperty());
-//        insertPatient("Karolak", "Zbigniew", "Bytom", "Dębowa", "144/5", "55102348479");
         show();
 
     }
+
+    @FXML private TableColumn<Task, String> taskIndexCol;
 
     @FXML
     private void populateEmployees (ObservableList<Patients> empData) throws ClassNotFoundException {
@@ -82,6 +87,13 @@ public class PatientsController extends PatientsDAO {
     public void addPatient() throws IOException, SQLException, ClassNotFoundException {
         Main.addPatient();
     }
+
+    @FXML
+    public void deletePatient() {
+        Patients test = PatientsView.getSelectionModel().getSelectedItem();
+        System.out.println(test.getpId());
+    }
+
 }
 
 

@@ -15,7 +15,7 @@
    <children>
       <TableView fx:id="PatientsView" layoutX="33.0" layoutY="65.0" prefHeight="388.0" prefWidth="593.0">
         <columns>
-          <TableColumn fx:id="pId" prefWidth="75.0" text="IdPacjent" />
+          <TableColumn fx:id="pIndex" prefWidth="75.0" text="#" />
           <TableColumn fx:id="pSurname" prefWidth="75.0" text="Nazwisko" />
             <TableColumn fx:id="pName" prefWidth="75.0" text="Imię" />
             <TableColumn fx:id="pCity" prefWidth="75.0" text="Miasto" />
@@ -51,7 +51,7 @@
                      </image></ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnDeletePatient" contentDisplay="TOP" prefHeight="83.0" prefWidth="125.0" text="Usuń">
+            <JFXButton fx:id="btnDeletePatient" contentDisplay="TOP" onAction="#deletePatient" prefHeight="83.0" prefWidth="125.0" text="Usuń">
                <graphic>
                   <ImageView fitHeight="66.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                      <image>

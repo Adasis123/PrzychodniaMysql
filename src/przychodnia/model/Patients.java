@@ -1,6 +1,5 @@
 package przychodnia.model;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,9 +8,9 @@ import javafx.beans.property.StringProperty;
 /**
  * Created by adam on 04/01/2017.
  */
-public class Patients extends RecursiveTreeObject<Patients> {
+public class Patients {
 
-
+    public IntegerProperty pIndex;
     public IntegerProperty pId;
     public StringProperty pSurname;
     public StringProperty pName;
@@ -21,6 +20,7 @@ public class Patients extends RecursiveTreeObject<Patients> {
     public StringProperty pPesel;
 
     public Patients() {
+        this.pIndex = new SimpleIntegerProperty();
         this.pId = new SimpleIntegerProperty();
         this.pSurname = new SimpleStringProperty();
         this.pName = new SimpleStringProperty();
@@ -30,6 +30,17 @@ public class Patients extends RecursiveTreeObject<Patients> {
         this.pPesel = new SimpleStringProperty();
     }
 
+    public int getpIndex() {
+        return pIndex.get();
+    }
+
+    public IntegerProperty pIndexProperty() {
+        return pIndex;
+    }
+
+    public void setpIndex(int pIndex) {
+        this.pIndex.set(pIndex);
+    }
 
     public String getpSurname() {
         return pSurname.get();

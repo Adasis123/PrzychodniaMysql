@@ -48,7 +48,7 @@
             </JFXTextField>
             <HBox prefHeight="68.0" prefWidth="422.0">
                <children>
-                  <JFXButton fx:id="addPatientBtn" prefHeight="86.0" prefWidth="209.0" stylesheets="@AddPatientsView.css" text="Dodaj" />
+                  <JFXButton fx:id="addPatientBtn" onAction="#addPatient" prefHeight="86.0" prefWidth="209.0" stylesheets="@AddPatientsView.css" text="Dodaj" />
                   <JFXButton fx:id="cancelPatientBtn" layoutX="10.0" layoutY="10.0" onAction="#cancelPatient" prefHeight="76.0" prefWidth="214.0" stylesheets="@AddPatientsView.css" text="Anuluj" />
                </children>
                <VBox.margin>

@@ -73,7 +73,7 @@ public class Main extends Application {
         modalPatient.show();
 
     }
-    
+
     public static void main(String[] args) {
 
         launch(args);
