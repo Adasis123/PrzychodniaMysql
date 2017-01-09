@@ -14,9 +14,8 @@ public class PatientsDAO {
 
     public static Integer row_number;
 
-    //*******************************
-    //SELECT Employees
-    //*******************************
+
+    //SELECT
     public static ObservableList<Patients> searchPatients () throws SQLException, ClassNotFoundException {
 
         String selectStmt = "SELECT * FROM pacjenci";
@@ -38,7 +37,7 @@ public class PatientsDAO {
         }
     }
 
-    //Select * from employees operation
+    //SELECT
     private static ObservableList<Patients> getPatientsList(ResultSet rs) throws SQLException, ClassNotFoundException {
         //Declare a observable List which comprises of Employee objects
         ObservableList<Patients> patientsList = FXCollections.observableArrayList();
@@ -62,9 +61,7 @@ public class PatientsDAO {
     }
 
 
-    //*************************************
-    //INSERT an employee
-    //*************************************
+    //INSERT
     public static void insertPatient (String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
         //Declare a DELETE statement
         String updateStmt = "INSERT INTO pacjenci " +
@@ -81,5 +78,17 @@ public class PatientsDAO {
     }
 
 
+    public static void deletePatient (Integer pId) throws SQLException, ClassNotFoundException {
+        //Declare a DELETE statement
+        String updateStmt = "DELETE FROM pacjenci\n" +
+                            "WHERE pacjentId ="+pId+";";
+
+        try {
+            DBUtil.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+    }
 
 }

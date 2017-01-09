@@ -1,7 +1,6 @@
 package przychodnia.controller;
 
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -39,11 +38,8 @@ public class PatientsController extends PatientsDAO {
     @FXML
     private void show() throws SQLException, ClassNotFoundException {
         try {
-            //Get all Employees information
-            ObservableList<Patients> empData = PatientsDAO.searchPatients();
-            System.out.println(empData);
-            //Populate Employees on TableView
-            populateEmployees(empData);
+            ObservableList<Patients> patientData = PatientsDAO.searchPatients();
+            populateEmployees(patientData);
 
         } catch (SQLException e){
             System.out.println("Error occurred while getting employees information from DB.\n" + e);
@@ -75,8 +71,6 @@ public class PatientsController extends PatientsDAO {
 
     }
 
-    @FXML private TableColumn<Task, String> taskIndexCol;
-
     @FXML
     private void populateEmployees (ObservableList<Patients> empData) throws ClassNotFoundException {
         //Set items to the employeeTable
@@ -89,9 +83,14 @@ public class PatientsController extends PatientsDAO {
     }
 
     @FXML
-    public void deletePatient() {
-        Patients test = PatientsView.getSelectionModel().getSelectedItem();
-        System.out.println(test.getpId());
+    private void deletePatient() throws SQLException, ClassNotFoundException {
+        try {
+            Patients del_patient = PatientsView.getSelectionModel().getSelectedItem();
+            PatientsDAO.deletePatient(del_patient.getpId());
+            show();
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 
 }
