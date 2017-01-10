@@ -1,5 +1,6 @@
 package przychodnia.controller;
 
+import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -16,6 +17,8 @@ import java.sql.SQLException;
  */
 public class PatientsController extends PatientsDAO {
 
+    @FXML
+    private JFXTextArea patientsText;
     @FXML
     private TableView<Patients> PatientsView;
     @FXML
@@ -84,15 +87,19 @@ public class PatientsController extends PatientsDAO {
 
     @FXML
     private void deletePatient() throws SQLException, ClassNotFoundException {
-        try {
-            Patients del_patient = PatientsView.getSelectionModel().getSelectedItem();
-            PatientsDAO.deletePatient(del_patient.getpId());
-            show();
-        } catch (SQLException e) {
-            throw e;
+        Patients del_patient = PatientsView.getSelectionModel().getSelectedItem();
+        if (del_patient != null) {
+            try {
+                PatientsDAO.deletePatient(del_patient.getpId());
+                show();
+            } catch (SQLException e) {
+                throw e;
+            }
+        }
+        else {
+            patientsText.setText("Proszę wybrać pacjenta!!!");
         }
     }
-
 }
 
 

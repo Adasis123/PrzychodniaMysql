@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="patientsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przychodnia.controller.PatientsController">
+<AnchorPane fx:id="patientsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@PatientsView.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przychodnia.controller.PatientsController">
    <children>
       <TableView fx:id="PatientsView" layoutX="33.0" layoutY="65.0" prefHeight="388.0" prefWidth="593.0">
         <columns>
@@ -24,7 +24,6 @@
             <TableColumn fx:id="pPesel" prefWidth="75.0" text="Pesel" />
         </columns>
       </TableView>
-      <Button fx:id="testBtn" layoutX="271.0" layoutY="509.0" mnemonicParsing="false" onAction="#show" text="Button" />
       <VBox layoutX="680.0" layoutY="65.0" prefHeight="372.0" prefWidth="119.0">
          <children>
             <JFXButton fx:id="newPatientBtn" contentDisplay="TOP" onAction="#addPatient" prefHeight="83.0" prefWidth="125.0" text="Dodaj">
@@ -66,5 +65,10 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <JFXTextArea fx:id="patientsText" disable="true" editable="false" focusColor="#f2efef" layoutX="74.0" layoutY="463.0" prefHeight="38.0" unFocusColor="#f2efef" wrapText="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </JFXTextArea>
    </children>
 </AnchorPane>
