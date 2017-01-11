@@ -95,11 +95,13 @@ public class PatientsController extends PatientsDAO {
 
     @FXML
     public void addPatient() throws IOException, SQLException, ClassNotFoundException {
+        patientsText.setText("");
         Main.addPatient();
     }
 
     @FXML
     private void deletePatient() throws SQLException, ClassNotFoundException {
+        patientsText.setText("");
         Patients del_patient = PatientsView.getSelectionModel().getSelectedItem();
         if (del_patient != null) {
             try {
@@ -109,9 +111,7 @@ public class PatientsController extends PatientsDAO {
                 throw e;
             }
         }
-        else {
-            patientsText.setText("Proszę wybrać pacjenta!!!");
-        }
+        else patientsText.setText("Proszę wybrać pacjenta!!!");
     }
 
     public static Integer getpId() {
@@ -120,19 +120,23 @@ public class PatientsController extends PatientsDAO {
 
     @FXML
     private void editPatient() throws IOException {
-        modalPatient = new Stage();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("view/AddPatientView.fxml"));
-        AnchorPane addPatientPane = loader.load();
-        Scene addPatient = new Scene(addPatientPane);
-        AddPatientController addPat = loader.getController();
+        patientsText.setText("");
         Patients edt_patient = PatientsView.getSelectionModel().getSelectedItem();
-        addPat.setPatientData(edt_patient.getpSurname(), edt_patient.getpName(), edt_patient.getpCity(), edt_patient.getpZipCode(), edt_patient.getpStreet(), edt_patient.getpNumber(), edt_patient.getpPesel());
-        addPat.addPatientBtn.setText("Edytuj");
-        pId = edt_patient.getpId();
-        modalPatient.setScene(addPatient);
-        modalPatient.initModality(Modality.APPLICATION_MODAL);
-        modalPatient.show();
+        if(edt_patient != null) {
+            modalPatient = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/AddPatientView.fxml"));
+            AnchorPane addPatientPane = loader.load();
+            Scene addPatient = new Scene(addPatientPane);
+            AddPatientController addPat = loader.getController();
+            addPat.setPatientData(edt_patient.getpSurname(), edt_patient.getpName(), edt_patient.getpCity(), edt_patient.getpZipCode(), edt_patient.getpStreet(), edt_patient.getpNumber(), edt_patient.getpPesel());
+            addPat.addPatientBtn.setText("Edytuj");
+            pId = edt_patient.getpId();
+            modalPatient.setScene(addPatient);
+            modalPatient.initModality(Modality.APPLICATION_MODAL);
+            modalPatient.show();
+        }
+        else patientsText.setText("Proszę wybrać pacjenta!!!");
 
     }
 
