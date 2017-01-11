@@ -19,6 +19,7 @@
           <TableColumn fx:id="pSurname" prefWidth="75.0" text="Nazwisko" />
             <TableColumn fx:id="pName" prefWidth="75.0" text="Imię" />
             <TableColumn fx:id="pCity" prefWidth="75.0" text="Miasto" />
+            <TableColumn fx:id="pZipCode" prefWidth="75.0" text="Kod Pocztowy" />
             <TableColumn fx:id="pStreet" prefWidth="75.0" text="Ulica" />
             <TableColumn fx:id="pNumber" prefWidth="75.0" text="Numer " />
             <TableColumn fx:id="pPesel" prefWidth="75.0" text="Pesel" />
@@ -34,7 +35,7 @@
                      </image></ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnEditPatient" contentDisplay="TOP" prefHeight="83.0" prefWidth="125.0" text="Edytuj">
+            <JFXButton fx:id="btnEditPatient" contentDisplay="TOP" onAction="#editPatient" prefHeight="83.0" prefWidth="125.0" text="Edytuj">
                <graphic>
                   <ImageView fitHeight="66.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                      <image>

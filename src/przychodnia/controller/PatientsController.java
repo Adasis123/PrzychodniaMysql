@@ -3,8 +3,13 @@ package przychodnia.controller;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import przychodnia.Main;
 import przychodnia.model.Patients;
 import przychodnia.model.PatientsDAO;
@@ -17,6 +22,8 @@ import java.sql.SQLException;
  */
 public class PatientsController extends PatientsDAO {
 
+
+    private static Stage modalPatient;
     @FXML
     private JFXTextArea patientsText;
     @FXML
@@ -29,6 +36,8 @@ public class PatientsController extends PatientsDAO {
     private TableColumn<Patients, String> pName;
     @FXML
     private TableColumn<Patients, String> pCity;
+    @FXML
+    private TableColumn<Patients, String> pZipCode;
     @FXML
     private TableColumn<Patients, String> pStreet;
     @FXML
@@ -67,6 +76,7 @@ public class PatientsController extends PatientsDAO {
         pSurname.setCellValueFactory(cellData -> cellData.getValue().pSurnameProperty());
         pName.setCellValueFactory(cellData -> cellData.getValue().pNameProperty());
         pCity.setCellValueFactory(cellData -> cellData.getValue().pCityProperty());
+        pZipCode.setCellValueFactory(cellData -> cellData.getValue().pZipCodeProperty());
         pStreet.setCellValueFactory(cellData -> cellData.getValue().pStreetProperty());
         pNumber.setCellValueFactory(cellData -> cellData.getValue().pNumberProperty());
         pPesel.setCellValueFactory(cellData -> cellData.getValue().pPeselProperty());
@@ -100,6 +110,24 @@ public class PatientsController extends PatientsDAO {
             patientsText.setText("Proszę wybrać pacjenta!!!");
         }
     }
+
+    @FXML
+    private void editPatient() throws IOException {
+        modalPatient = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/AddPatientView.fxml"));
+        AnchorPane addPatientPane = loader.load();
+        Scene addPatient = new Scene(addPatientPane);
+        AddPatientController addPat = loader.getController();
+        Patients edt_patient = PatientsView.getSelectionModel().getSelectedItem();
+        addPat.setPatientData(edt_patient.getpSurname(), edt_patient.getpName(), edt_patient.getpCity(), edt_patient.getpZipCode(), edt_patient.getpStreet(), edt_patient.getpNumber(), edt_patient.getpPesel());
+        modalPatient.setScene(addPatient);
+        modalPatient.initModality(Modality.APPLICATION_MODAL);
+        modalPatient.show();
+
+    }
+    
+    public static Stage getModalPatient() {
+        return modalPatient;
+    }
 }
-
-

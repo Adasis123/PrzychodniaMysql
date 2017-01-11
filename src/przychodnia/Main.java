@@ -20,6 +20,7 @@ public class Main extends Application {
     private Stage primaryStage;
     private static BorderPane rootLayout;
     private static Stage modalPatient;
+    private static boolean addPatientModal;
 
     @Override
     public void start(Stage primaryStage) throws IOException, SQLException, ClassNotFoundException {
@@ -61,6 +62,7 @@ public class Main extends Application {
         return modalPatient;
     }
 
+
     public static void addPatient() throws IOException {
 
         modalPatient = new Stage();
@@ -71,7 +73,16 @@ public class Main extends Application {
         modalPatient.setScene(addPatient);
         modalPatient.initModality(Modality.APPLICATION_MODAL);
         modalPatient.show();
+        setAddPatientModal(true);
 
+    }
+
+    public static void setAddPatientModal(boolean addPatientModal) {
+        Main.addPatientModal = addPatientModal;
+    }
+
+    public static boolean isAddPatientModal() {
+        return addPatientModal;
     }
 
     public static void main(String[] args) {

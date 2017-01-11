@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
  */
 public class AddPatientController implements Initializable {
 
+
     @FXML
     private JFXTextField pSurname;
 
@@ -39,8 +40,12 @@ public class AddPatientController implements Initializable {
     private JFXTextField pPesel;
 
     @FXML
-    public void cancelPatient() {
-        Main.getModalPatient().close();
+    public void cancelPatient() throws IOException {
+        if(Main.isAddPatientModal()){
+            Main.getModalPatient().close();
+            Main.setAddPatientModal(false);
+        }
+        else PatientsController.getModalPatient().close();
 
     }
 
@@ -50,7 +55,7 @@ public class AddPatientController implements Initializable {
             val();
             PatientsDAO.insertPatient(pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(), pStreet.getText(),
                     pNumber.getText(), pPesel.getText());
-            Main.getModalPatient().close();
+           cancelPatient();
             Main.showVisits();
         } catch (SQLException e) {
             throw e;
@@ -59,6 +64,8 @@ public class AddPatientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+
 //
 //        RequiredFieldValidator validator = new RequiredFieldValidator();
 //        pSurname.getValidators().add(validator);
@@ -84,6 +91,16 @@ public class AddPatientController implements Initializable {
             }
         });
 
+    }
+
+    public void setPatientData(String Surname, String Name, String City, String ZipCode, String Street, String Number,String Pesel) {
+       pSurname.setText(Surname);
+        pName.setText(Name);
+        pCity.setText(City);
+        pZipCode.setText(ZipCode);
+        pStreet.setText(Street);
+        pNumber.setText(Number);
+        pPesel.setText(Pesel);
     }
 
 }

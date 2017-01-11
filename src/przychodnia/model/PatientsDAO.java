@@ -50,6 +50,7 @@ public class PatientsDAO {
             pat.setpSurname(rs.getString("pacjentNazwisko"));
             pat.setpName(rs.getString("pacjentImie"));
             pat.setpCity(rs.getString("pacjentMiasto"));
+            pat.setpZipCode(rs.getString("pacjentKodPocztowy"));
             pat.setpStreet(rs.getString("pacjentUlica"));
             pat.setpNumber(rs.getString("pacjentNumer"));
             pat.setpPesel(rs.getString("pacjentPesel"));

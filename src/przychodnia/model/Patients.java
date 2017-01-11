@@ -15,9 +15,22 @@ public class Patients {
     public StringProperty pSurname;
     public StringProperty pName;
     public StringProperty pCity;
+    public StringProperty pZipCode;
     public StringProperty pStreet;
     public StringProperty pNumber;
     public StringProperty pPesel;
+
+    public String getpZipCode() {
+        return pZipCode.get();
+    }
+
+    public StringProperty pZipCodeProperty() {
+        return pZipCode;
+    }
+
+    public void setpZipCode(String pZipCode) {
+        this.pZipCode.set(pZipCode);
+    }
 
     public Patients() {
         this.pIndex = new SimpleIntegerProperty();
@@ -25,6 +38,7 @@ public class Patients {
         this.pSurname = new SimpleStringProperty();
         this.pName = new SimpleStringProperty();
         this.pCity = new SimpleStringProperty();
+        this.pZipCode = new SimpleStringProperty();
         this.pStreet = new SimpleStringProperty();
         this.pNumber = new SimpleStringProperty();
         this.pPesel = new SimpleStringProperty();
