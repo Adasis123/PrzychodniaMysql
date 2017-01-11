@@ -1,5 +1,6 @@
 package przychodnia.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ import java.sql.SQLException;
 public class PatientsController extends PatientsDAO {
 
 
+    @FXML
+    public static JFXButton addPatientBtn;
     private static Stage modalPatient;
     @FXML
     private JFXTextArea patientsText;
@@ -121,12 +124,13 @@ public class PatientsController extends PatientsDAO {
         AddPatientController addPat = loader.getController();
         Patients edt_patient = PatientsView.getSelectionModel().getSelectedItem();
         addPat.setPatientData(edt_patient.getpSurname(), edt_patient.getpName(), edt_patient.getpCity(), edt_patient.getpZipCode(), edt_patient.getpStreet(), edt_patient.getpNumber(), edt_patient.getpPesel());
+        addPat.addPatientBtn.setText("Edytuj");
         modalPatient.setScene(addPatient);
         modalPatient.initModality(Modality.APPLICATION_MODAL);
         modalPatient.show();
 
     }
-    
+
     public static Stage getModalPatient() {
         return modalPatient;
     }
