@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 public class AddPatientController implements Initializable {
 
 
+    private Integer pId;
     @FXML
     public JFXButton addPatientBtn;
     @FXML
@@ -54,16 +55,17 @@ public class AddPatientController implements Initializable {
 
     @FXML
     public void addPatient() throws SQLException, ClassNotFoundException, IOException {
-        try {
-            if(Main.isAddPatientModal()){
-            PatientsDAO.insertPatient(pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(), pStreet.getText(),
+        if(Main.isAddPatientModal()){
+        PatientsDAO.insertPatient(pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(), pStreet.getText(),
+                pNumber.getText(), pPesel.getText());
+        cancelPatient();
+        Main.showVisits();
+        Main.setAddPatientModal(false);}
+        else {
+            PatientsDAO.updatePatient(PatientsController.getpId(), pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(), pStreet.getText(),
                     pNumber.getText(), pPesel.getText());
-           cancelPatient();
+            cancelPatient();
             Main.showVisits();
-            Main.setAddPatientModal(false);}
-            else System.out.println("TEST");
-        } catch (SQLException e) {
-            throw e;
         }
     }
 

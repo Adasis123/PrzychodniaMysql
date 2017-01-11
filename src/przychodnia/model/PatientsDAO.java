@@ -92,4 +92,27 @@ public class PatientsDAO {
         }
     }
 
+    //*************************************
+    //UPDATE an employee's email address
+    //*************************************
+    public static void updatePatient (Integer pId, String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
+        //Declare a UPDATE statement
+        String updateStmt = "UPDATE pacjenci\n" +
+                        "SET pacjentNazwisko = '"+pSurname+"',\n" +
+                        "pacjentImie = '"+pName+"',\n" +
+                        "pacjentMiasto = '"+pCity+"',\n" +
+                        "pacjentKodPocztowy = '"+pZipCode+"',\n" +
+                        "pacjentUlica = '"+pStreet+"',\n" +
+                        "pacjentNumer = '"+pNumber+"',\n" +
+                        "pacjentPesel = '"+pPesel+"'\n" +
+                        "WHERE pacjentId = "+pId+";";
+        //Execute UPDATE operation
+        try {
+            DBUtil.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while UPDATE Operation: " + e);
+            throw e;
+        }
+    }
+
 }

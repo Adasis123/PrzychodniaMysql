@@ -31,8 +31,8 @@ public class PatientsController extends PatientsDAO {
     private JFXTextArea patientsText;
     @FXML
     private TableView<Patients> PatientsView;
-    @FXML
-    private TableColumn<Patients, Integer> pId;
+
+    public static Integer pId;
     @FXML
     private TableColumn<Patients, String>  pSurname;
     @FXML
@@ -114,6 +114,10 @@ public class PatientsController extends PatientsDAO {
         }
     }
 
+    public static Integer getpId() {
+        return pId;
+    }
+
     @FXML
     private void editPatient() throws IOException {
         modalPatient = new Stage();
@@ -125,6 +129,7 @@ public class PatientsController extends PatientsDAO {
         Patients edt_patient = PatientsView.getSelectionModel().getSelectedItem();
         addPat.setPatientData(edt_patient.getpSurname(), edt_patient.getpName(), edt_patient.getpCity(), edt_patient.getpZipCode(), edt_patient.getpStreet(), edt_patient.getpNumber(), edt_patient.getpPesel());
         addPat.addPatientBtn.setText("Edytuj");
+        pId = edt_patient.getpId();
         modalPatient.setScene(addPatient);
         modalPatient.initModality(Modality.APPLICATION_MODAL);
         modalPatient.show();
@@ -134,4 +139,5 @@ public class PatientsController extends PatientsDAO {
     public static Stage getModalPatient() {
         return modalPatient;
     }
+
 }
