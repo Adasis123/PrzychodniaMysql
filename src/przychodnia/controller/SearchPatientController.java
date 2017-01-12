@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import przychodnia.Main;
 import przychodnia.model.Patients;
 import przychodnia.model.PatientsDAO;
 
@@ -19,7 +20,11 @@ import java.util.ResourceBundle;
 public class SearchPatientController implements Initializable {
 
 
+    public  ObservableList<Patients> getPatientsList() {
+        return patientsList;
+    }
 
+    private ObservableList<Patients> patientsList;
     @FXML
     private JFXTextField searchSurname;
 
@@ -29,13 +34,15 @@ public class SearchPatientController implements Initializable {
     }
 
 
+
     @FXML
     public void searchPatient() throws ClassNotFoundException, SQLException, IOException {
         try {
             FXMLLoader loader = new FXMLLoader();
             //Get Employee information
-            ObservableList<Patients> patientsList = PatientsDAO.searchPatients();
+            patientsList = PatientsDAO.searchPatients();
             System.out.println(patientsList);
+            Main.showSearchedPatients(patientsList);
             cancelSearch();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -24,6 +24,11 @@ import java.sql.SQLException;
 public class PatientsController extends PatientsDAO {
 
 
+    public static void setPatientsList(ObservableList<Patients> patientsList) {
+        PatientsController.patientsList = patientsList;
+    }
+
+    private static ObservableList<Patients> patientsList;
     @FXML
     public static JFXButton addPatientBtn;
     private static Stage modalPatient;
@@ -63,6 +68,10 @@ public class PatientsController extends PatientsDAO {
 
     }
 
+    private void showSearched() throws SQLException, ClassNotFoundException {
+            populateEmployees(patientsList);
+    }
+
     public void initialize () throws SQLException, ClassNotFoundException {
         /*
         The setCellValueFactory(...) that we set on the table columns are used to determine
@@ -84,6 +93,12 @@ public class PatientsController extends PatientsDAO {
         pNumber.setCellValueFactory(cellData -> cellData.getValue().pNumberProperty());
         pPesel.setCellValueFactory(cellData -> cellData.getValue().pPeselProperty());
         show();
+        if(patientsList != null){
+            showSearched();
+            patientsList = null;
+        }
+        else System.out.println("Nie ma!!!");
+
 
     }
 
@@ -151,6 +166,11 @@ public class PatientsController extends PatientsDAO {
         modalPatient.setScene(searchPatient);
         modalPatient.initModality(Modality.APPLICATION_MODAL);
         modalPatient.show();
+
+    }
+
+    private void patientInfo() {
+
 
     }
 

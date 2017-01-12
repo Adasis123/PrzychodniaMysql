@@ -1,12 +1,15 @@
 package przychodnia;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import przychodnia.controller.PatientsController;
+import przychodnia.model.Patients;
 import przychodnia.util.DBUtil;
 
 import java.io.IOException;
@@ -51,6 +54,16 @@ public class Main extends Application {
     public static void showVisits() throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/PatientsView.fxml"));
+        AnchorPane testPane = loader.load();
+        rootLayout.setCenter(testPane);
+
+    }
+
+    public static void showSearchedPatients(ObservableList<Patients> patientsList) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        PatientsController patController = loader.getController();
+        patController.setPatientsList(patientsList);
         loader.setLocation(Main.class.getResource("view/PatientsView.fxml"));
         AnchorPane testPane = loader.load();
         rootLayout.setCenter(testPane);
