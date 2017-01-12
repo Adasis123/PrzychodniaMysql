@@ -29,18 +29,28 @@ public class SearchPatientController implements Initializable {
     private JFXTextField searchSurname;
 
     @FXML
+    private JFXTextField searchCity;
+
+    @FXML
+    private JFXTextField searchStreet;
+
+    @FXML
+    private JFXTextField searchPesel;
+
+    @FXML
+    private JFXTextField searchName;
+
+    @FXML
     private void cancelSearch() {
         PatientsController.getModalPatient().close();
     }
-
-
 
     @FXML
     public void searchPatient() throws ClassNotFoundException, SQLException, IOException {
         try {
             FXMLLoader loader = new FXMLLoader();
-            //Get Employee information
-            patientsList = PatientsDAO.searchPatients();
+            patientsList = PatientsDAO.searchPatient(searchSurname.getText(), searchName.getText(),
+                    searchCity.getText(), searchStreet.getText(), searchPesel.getText() );
             System.out.println(patientsList);
             Main.showSearchedPatients(patientsList);
             cancelSearch();

@@ -61,6 +61,54 @@ public class PatientsDAO {
         return patientsList;
     }
 
+    //SELECT
+    public static ObservableList<Patients> searchPatient (String pSurname, String pName, String pCity, String pStreet, String pPesel) throws SQLException, ClassNotFoundException {
+
+        String selectStmt = "SELECT * FROM pacjenci\n" +
+                            "WHERE pacjentNazwisko='"+pSurname+"' OR pacjentImie='"+pName+"' OR pacjentMiasto=" +
+                            "'"+pCity+"' OR pacjentUlica='"+pStreet+"' OR pacjentImie='"+pPesel+"';";
+
+        //Execute SELECT statement
+        try {
+            //Get ResultSet from dbExecuteQuery method
+            ResultSet rsPatient = DBUtil.dbExecuteQuery(selectStmt);
+
+            //Send ResultSet to the getEmployeeList method and get employee object
+            ObservableList<Patients> patientsList = getPatientsList(rsPatient);
+
+            //Return employee object
+            return patientsList;
+        } catch (SQLException e) {
+            System.out.println("SQL select operation has been failed: " + e);
+            //Return exception
+            throw e;
+        }
+    }
+
+    //SELECT
+    private static ObservableList<Patients> getPatientList(ResultSet rs) throws SQLException, ClassNotFoundException {
+        //Declare a observable List which comprises of Employee objects
+        ObservableList<Patients> patientList = FXCollections.observableArrayList();
+        row_number = 0;
+        while (rs.next()) {
+            row_number ++;
+            Patients pat = new Patients();
+            pat.setpIndex(row_number);
+            pat.setpId(rs.getInt("pacjentId"));
+            pat.setpSurname(rs.getString("pacjentNazwisko"));
+            pat.setpName(rs.getString("pacjentImie"));
+            pat.setpCity(rs.getString("pacjentMiasto"));
+            pat.setpZipCode(rs.getString("pacjentKodPocztowy"));
+            pat.setpStreet(rs.getString("pacjentUlica"));
+            pat.setpNumber(rs.getString("pacjentNumer"));
+            pat.setpPesel(rs.getString("pacjentPesel"));
+            //Add employee to the ObservableList
+            patientList.add(pat);
+        }
+        //return empList (ObservableList of Employees)
+        return patientList;
+    }
+
 
     //INSERT
     public static void insertPatient (String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
