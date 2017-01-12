@@ -140,6 +140,20 @@ public class PatientsController extends PatientsDAO {
 
     }
 
+    @FXML
+    private void searchPatient() throws IOException {
+
+        modalPatient = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/SearchPatientView.fxml"));
+        AnchorPane searchPatientPane = loader.load();
+        Scene searchPatient = new Scene(searchPatientPane);
+        modalPatient.setScene(searchPatient);
+        modalPatient.initModality(Modality.APPLICATION_MODAL);
+        modalPatient.show();
+
+    }
+
     public static Stage getModalPatient() {
         return modalPatient;
     }
