@@ -19,24 +19,15 @@ import java.util.ResourceBundle;
  */
 public class SearchPatientController implements Initializable {
 
-
-    public  ObservableList<Patients> getPatientsList() {
-        return patientsList;
-    }
-
     private ObservableList<Patients> patientsList;
     @FXML
     private JFXTextField searchSurname;
-
     @FXML
     private JFXTextField searchCity;
-
     @FXML
     private JFXTextField searchStreet;
-
     @FXML
     private JFXTextField searchPesel;
-
     @FXML
     private JFXTextField searchName;
 
@@ -50,8 +41,7 @@ public class SearchPatientController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader();
             patientsList = PatientsDAO.searchPatient(searchSurname.getText(), searchName.getText(),
-                    searchCity.getText(), searchStreet.getText(), searchPesel.getText() );
-            System.out.println(patientsList);
+                    searchCity.getText(), searchStreet.getText(), searchPesel.getText());
             Main.showSearchedPatients(patientsList);
             cancelSearch();
         } catch (SQLException e) {
@@ -63,5 +53,9 @@ public class SearchPatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+    }
+
+    public ObservableList<Patients> getPatientsList() {
+        return patientsList;
     }
 }

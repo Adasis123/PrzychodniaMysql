@@ -19,9 +19,9 @@ import java.util.ResourceBundle;
 public class AddPatientController implements Initializable {
 
 
-    private Integer pId;
     @FXML
     public JFXButton addPatientBtn;
+    private Integer pId;
     @FXML
     private JFXTextField pSurname;
 
@@ -45,23 +45,22 @@ public class AddPatientController implements Initializable {
 
     @FXML
     public void cancelPatient() throws IOException {
-        if(Main.isAddPatientModal()){
+        if (Main.isAddPatientModal()) {
             Main.getModalPatient().close();
             Main.setAddPatientModal(false);
-        }
-        else PatientsController.getModalPatient().close();
+        } else PatientsController.getModalPatient().close();
 
     }
 
     @FXML
     public void addPatient() throws SQLException, ClassNotFoundException, IOException {
-        if(Main.isAddPatientModal()){
-        PatientsDAO.insertPatient(pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(), pStreet.getText(),
-                pNumber.getText(), pPesel.getText());
-        cancelPatient();
-        Main.showVisits();
-        Main.setAddPatientModal(false);}
-        else {
+        if (Main.isAddPatientModal()) {
+            PatientsDAO.insertPatient(pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(), pStreet.getText(),
+                    pNumber.getText(), pPesel.getText());
+            cancelPatient();
+            Main.showVisits();
+            Main.setAddPatientModal(false);
+        } else {
             PatientsDAO.updatePatient(PatientsController.getpId(), pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(), pStreet.getText(),
                     pNumber.getText(), pPesel.getText());
             cancelPatient();
@@ -83,7 +82,6 @@ public class AddPatientController implements Initializable {
 //            }
 
 
-
     }
 
     private void val() {
@@ -92,15 +90,15 @@ public class AddPatientController implements Initializable {
         validator.setMessage("Proszę wprowadzić dane");
 
         pSurname.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue){
+            if (!newValue) {
                 pSurname.validate();
             }
         });
 
     }
 
-    public void setPatientData(String Surname, String Name, String City, String ZipCode, String Street, String Number,String Pesel) {
-       pSurname.setText(Surname);
+    public void setPatientData(String Surname, String Name, String City, String ZipCode, String Street, String Number, String Pesel) {
+        pSurname.setText(Surname);
         pName.setText(Name);
         pCity.setText(City);
         pZipCode.setText(ZipCode);

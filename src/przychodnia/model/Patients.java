@@ -20,18 +20,6 @@ public class Patients {
     public StringProperty pNumber;
     public StringProperty pPesel;
 
-    public String getpZipCode() {
-        return pZipCode.get();
-    }
-
-    public StringProperty pZipCodeProperty() {
-        return pZipCode;
-    }
-
-    public void setpZipCode(String pZipCode) {
-        this.pZipCode.set(pZipCode);
-    }
-
     public Patients() {
         this.pIndex = new SimpleIntegerProperty();
         this.pId = new SimpleIntegerProperty();
@@ -44,20 +32,36 @@ public class Patients {
         this.pPesel = new SimpleStringProperty();
     }
 
-    public int getpIndex() {
-        return pIndex.get();
+    public String getpZipCode() {
+        return pZipCode.get();
     }
 
-    public IntegerProperty pIndexProperty() {
-        return pIndex;
+    public void setpZipCode(String pZipCode) {
+        this.pZipCode.set(pZipCode);
+    }
+
+    public StringProperty pZipCodeProperty() {
+        return pZipCode;
+    }
+
+    public int getpIndex() {
+        return pIndex.get();
     }
 
     public void setpIndex(int pIndex) {
         this.pIndex.set(pIndex);
     }
 
+    public IntegerProperty pIndexProperty() {
+        return pIndex;
+    }
+
     public String getpSurname() {
         return pSurname.get();
+    }
+
+    public void setpSurname(String pSurname) {
+        this.pSurname.set(pSurname);
     }
 
     public StringProperty pSurnameProperty() {
@@ -68,12 +72,20 @@ public class Patients {
         return pName.get();
     }
 
+    public void setpName(String pName) {
+        this.pName.set(pName);
+    }
+
     public StringProperty pNameProperty() {
         return pName;
     }
 
     public String getpCity() {
         return pCity.get();
+    }
+
+    public void setpCity(String pCity) {
+        this.pCity.set(pCity);
     }
 
     public StringProperty pCityProperty() {
@@ -84,12 +96,20 @@ public class Patients {
         return pStreet.get();
     }
 
+    public void setpStreet(String pStreet) {
+        this.pStreet.set(pStreet);
+    }
+
     public StringProperty pStreetProperty() {
         return pStreet;
     }
 
     public String getpNumber() {
         return pNumber.get();
+    }
+
+    public void setpNumber(String pNumber) {
+        this.pNumber.set(pNumber);
     }
 
     public StringProperty pNumberProperty() {
@@ -100,44 +120,24 @@ public class Patients {
         return pPesel.get();
     }
 
-    public StringProperty pPeselProperty() {
-        return pPesel;
-    }
-
-    public void setpSurname(String pSurname) {
-        this.pSurname.set(pSurname);
-    }
-
-    public void setpName(String pName) {
-        this.pName.set(pName);
-    }
-
-    public void setpCity(String pCity) {
-        this.pCity.set(pCity);
-    }
-
-    public void setpStreet(String pStreet) {
-        this.pStreet.set(pStreet);
-    }
-
-    public void setpNumber(String pNumber) {
-        this.pNumber.set(pNumber);
-    }
-
     public void setpPesel(String pPesel) {
         this.pPesel.set(pPesel);
+    }
+
+    public StringProperty pPeselProperty() {
+        return pPesel;
     }
 
     public int getpId() {
         return pId.get();
     }
 
-    public IntegerProperty pIdProperty() {
-        return pId;
-    }
-
     public void setpId(int pId) {
         this.pId.set(pId);
+    }
+
+    public IntegerProperty pIdProperty() {
+        return pId;
     }
 
 }

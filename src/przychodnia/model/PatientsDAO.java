@@ -19,7 +19,7 @@ public class PatientsDAO {
 
 
     //SELECT
-    public static ObservableList<Patients> searchPatients () throws SQLException, ClassNotFoundException {
+    public static ObservableList<Patients> searchPatients() throws SQLException, ClassNotFoundException {
 
         String selectStmt = "SELECT * FROM pacjenci";
 
@@ -46,7 +46,7 @@ public class PatientsDAO {
         ObservableList<Patients> patientsList = FXCollections.observableArrayList();
         row_number = 0;
         while (rs.next()) {
-            row_number ++;
+            row_number++;
             Patients pat = new Patients();
             pat.setpIndex(row_number);
             pat.setpId(rs.getInt("pacjentId"));
@@ -65,7 +65,7 @@ public class PatientsDAO {
     }
 
     //SELECT
-    public static ObservableList<Patients> searchPatient (String pSurname, String pName, String pCity, String pStreet, String pPesel) throws SQLException, ClassNotFoundException {
+    public static ObservableList<Patients> searchPatient(String pSurname, String pName, String pCity, String pStreet, String pPesel) throws SQLException, ClassNotFoundException {
         boolean isQueryvalid = false;
         PreparedStatement ps = null;
         List<String> bindVariables = new ArrayList<>();
@@ -79,18 +79,16 @@ public class PatientsDAO {
         }
         if (pName.length() > 0 && isQueryvalid) {
             query.append("AND pacjentImie='").append(pName).append("'");
-        }
-        else {
-            if(pName.length() > 0){
+        } else {
+            if (pName.length() > 0) {
                 query.append("pacjentImie='").append(pName).append("'");
                 isQueryvalid = true;
             }
         }
         if (pCity.length() > 0 && isQueryvalid) {
             query.append("AND pacjentMiasto='").append(pCity).append("'");
-        }
-        else {
-            if(pCity.length() > 0){
+        } else {
+            if (pCity.length() > 0) {
                 query.append("pacjentMiasto='").append(pCity).append("'");
                 isQueryvalid = true;
             }
@@ -98,18 +96,16 @@ public class PatientsDAO {
 
         if (pStreet.length() > 0 && isQueryvalid) {
             query.append("AND pacjentUlica='").append(pStreet).append("'");
-        }
-        else {
-            if(pStreet.length() > 0){
+        } else {
+            if (pStreet.length() > 0) {
                 query.append("pacjentUlica='").append(pStreet).append("'");
             }
         }
 
         if (pPesel.length() > 0 && isQueryvalid) {
             query.append("AND pacjentPesel='").append(pPesel).append("'");
-        }
-        else {
-            if(pPesel.length() > 0){
+        } else {
+            if (pPesel.length() > 0) {
                 query.append("pacjentPesel='").append(pPesel).append("'");
             }
         }
@@ -136,7 +132,7 @@ public class PatientsDAO {
         ObservableList<Patients> patientList = FXCollections.observableArrayList();
         row_number = 0;
         while (rs.next()) {
-            row_number ++;
+            row_number++;
             Patients pat = new Patients();
             pat.setpIndex(row_number);
             pat.setpId(rs.getInt("pacjentId"));
@@ -156,12 +152,12 @@ public class PatientsDAO {
 
 
     //INSERT
-    public static void insertPatient (String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
+    public static void insertPatient(String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
         //Declare a DELETE statement
         String updateStmt = "INSERT INTO pacjenci " +
                 "(pacjentNazwisko, pacjentImie, pacjentMiasto, pacjentKodPocztowy, pacjentUlica, pacjentNumer, pacjentPesel)" +
-                " VALUES ('"+pSurname+"', '"+pName+"', '"+pCity+"', '"+pZipCode+"', '"+
-                " "+pStreet+"', '"+pNumber+"', '"+pPesel+"')";
+                " VALUES ('" + pSurname + "', '" + pName + "', '" + pCity + "', '" + pZipCode + "', '" +
+                " " + pStreet + "', '" + pNumber + "', '" + pPesel + "')";
         //Execute DELETE operation
         try {
             DBUtil.dbExecuteUpdate(updateStmt);
@@ -172,10 +168,10 @@ public class PatientsDAO {
     }
 
 
-    public static void deletePatient (Integer pId) throws SQLException, ClassNotFoundException {
+    public static void deletePatient(Integer pId) throws SQLException, ClassNotFoundException {
         //Declare a DELETE statement
         String updateStmt = "DELETE FROM pacjenci\n" +
-                            "WHERE pacjentId ="+pId+";";
+                "WHERE pacjentId =" + pId + ";";
 
         try {
             DBUtil.dbExecuteUpdate(updateStmt);
@@ -188,17 +184,17 @@ public class PatientsDAO {
     //*************************************
     //UPDATE an employee's email address
     //*************************************
-    public static void updatePatient (Integer pId, String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
+    public static void updatePatient(Integer pId, String pSurname, String pName, String pCity, String pZipCode, String pStreet, String pNumber, String pPesel) throws SQLException, ClassNotFoundException {
         //Declare a UPDATE statement
         String updateStmt = "UPDATE pacjenci\n" +
-                        "SET pacjentNazwisko = '"+pSurname+"',\n" +
-                        "pacjentImie = '"+pName+"',\n" +
-                        "pacjentMiasto = '"+pCity+"',\n" +
-                        "pacjentKodPocztowy = '"+pZipCode+"',\n" +
-                        "pacjentUlica = '"+pStreet+"',\n" +
-                        "pacjentNumer = '"+pNumber+"',\n" +
-                        "pacjentPesel = '"+pPesel+"'\n" +
-                        "WHERE pacjentId = "+pId+";";
+                "SET pacjentNazwisko = '" + pSurname + "',\n" +
+                "pacjentImie = '" + pName + "',\n" +
+                "pacjentMiasto = '" + pCity + "',\n" +
+                "pacjentKodPocztowy = '" + pZipCode + "',\n" +
+                "pacjentUlica = '" + pStreet + "',\n" +
+                "pacjentNumer = '" + pNumber + "',\n" +
+                "pacjentPesel = '" + pPesel + "'\n" +
+                "WHERE pacjentId = " + pId + ";";
         //Execute UPDATE operation
         try {
             DBUtil.dbExecuteUpdate(updateStmt);
