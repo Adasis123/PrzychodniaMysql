@@ -63,17 +63,5 @@ public class SearchPatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-//
-//        RequiredFieldValidator validator = new RequiredFieldValidator();
-//        pSurname.getValidators().add(validator);
-//        validator.setMessage("Proszę wprowadzić dane");
-//
-//        pSurname.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if(!newValue){
-//                pSurname.validate();
-//            }
-
-
-
     }
 }

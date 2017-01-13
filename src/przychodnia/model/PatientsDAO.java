@@ -4,8 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import przychodnia.util.DBUtil;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by adam on 06/01/2017.
@@ -63,15 +66,57 @@ public class PatientsDAO {
 
     //SELECT
     public static ObservableList<Patients> searchPatient (String pSurname, String pName, String pCity, String pStreet, String pPesel) throws SQLException, ClassNotFoundException {
+        boolean isQueryvalid = false;
+        PreparedStatement ps = null;
+        List<String> bindVariables = new ArrayList<>();
+        StringBuilder query = new StringBuilder(
+                "SELECT * FROM pacjenci WHERE ");
 
-        String selectStmt = "SELECT * FROM pacjenci\n" +
-                            "WHERE pacjentNazwisko='"+pSurname+"' OR pacjentImie='"+pName+"' OR pacjentMiasto=" +
-                            "'"+pCity+"' OR pacjentUlica='"+pStreet+"' OR pacjentImie='"+pPesel+"';";
+        if (pSurname.length() > 0) {
+            query.append("pacjentNazwisko='").append(pSurname).append("'");
+            isQueryvalid = true;
 
-        //Execute SELECT statement
+        }
+        if (pName.length() > 0 && isQueryvalid) {
+            query.append("AND pacjentImie='").append(pName).append("'");
+        }
+        else {
+            if(pName.length() > 0){
+                query.append("pacjentImie='").append(pName).append("'");
+                isQueryvalid = true;
+            }
+        }
+        if (pCity.length() > 0 && isQueryvalid) {
+            query.append("AND pacjentMiasto='").append(pCity).append("'");
+        }
+        else {
+            if(pCity.length() > 0){
+                query.append("pacjentMiasto='").append(pCity).append("'");
+                isQueryvalid = true;
+            }
+        }
+
+        if (pStreet.length() > 0 && isQueryvalid) {
+            query.append("AND pacjentUlica='").append(pStreet).append("'");
+        }
+        else {
+            if(pStreet.length() > 0){
+                query.append("pacjentUlica='").append(pStreet).append("'");
+            }
+        }
+
+        if (pPesel.length() > 0 && isQueryvalid) {
+            query.append("AND pacjentPesel='").append(pPesel).append("'");
+        }
+        else {
+            if(pPesel.length() > 0){
+                query.append("pacjentPesel='").append(pPesel).append("'");
+            }
+        }
+
         try {
             //Get ResultSet from dbExecuteQuery method
-            ResultSet rsPatient = DBUtil.dbExecuteQuery(selectStmt);
+            ResultSet rsPatient = DBUtil.dbExecuteQuery(query.toString());
 
             //Send ResultSet to the getEmployeeList method and get employee object
             ObservableList<Patients> patientsList = getPatientsList(rsPatient);

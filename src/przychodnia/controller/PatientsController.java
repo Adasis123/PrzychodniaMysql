@@ -23,11 +23,6 @@ import java.sql.SQLException;
  */
 public class PatientsController extends PatientsDAO {
 
-
-    public static void setPatientsList(ObservableList<Patients> patientsList) {
-        PatientsController.patientsList = patientsList;
-    }
-
     private static ObservableList<Patients> patientsList;
     @FXML
     public static JFXButton addPatientBtn;
@@ -62,7 +57,7 @@ public class PatientsController extends PatientsDAO {
             populateEmployees(patientData);
 
         } catch (SQLException e){
-            System.out.println("Error occurred while getting employees information from DB.\n" + e);
+            System.out.println("Error with getting information from DB.\n" + e);
             throw e;
         }
 
@@ -92,14 +87,11 @@ public class PatientsController extends PatientsDAO {
         pStreet.setCellValueFactory(cellData -> cellData.getValue().pStreetProperty());
         pNumber.setCellValueFactory(cellData -> cellData.getValue().pNumberProperty());
         pPesel.setCellValueFactory(cellData -> cellData.getValue().pPeselProperty());
-        show();
         if(patientsList != null){
             showSearched();
             patientsList = null;
         }
-        else System.out.println("Nie ma!!!");
-
-
+        else show();
     }
 
     @FXML
@@ -152,7 +144,6 @@ public class PatientsController extends PatientsDAO {
             modalPatient.show();
         }
         else patientsText.setText("Proszę wybrać pacjenta!!!");
-
     }
 
     @FXML
@@ -166,16 +157,13 @@ public class PatientsController extends PatientsDAO {
         modalPatient.setScene(searchPatient);
         modalPatient.initModality(Modality.APPLICATION_MODAL);
         modalPatient.show();
-
     }
 
-    private void patientInfo() {
-
-
+    public static void setPatientsList(ObservableList<Patients> patientsList) {
+        PatientsController.patientsList = patientsList;
     }
 
     public static Stage getModalPatient() {
         return modalPatient;
     }
-
 }
