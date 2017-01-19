@@ -63,14 +63,14 @@ public class AddPatientController implements Initializable {
             PatientsDAO.insertPatient(pSurname.getText(), pName.getText(), pCity.getText(), pZipCode.getText(),
                     pStreet.getText(), pNumber.getText(), pPesel.getText());
             cancelPatient();
-            Main.showVisits();
+            Main.showPatients();
             Main.setAddPatientModal(false);
         } else {
             PatientsDAO.updatePatient(PatientsController.getpId(), pSurname.getText(), pName.getText(), pCity.getText(),
                     pZipCode.getText(), pStreet.getText(),
                     pNumber.getText(), pPesel.getText());
             cancelPatient();
-            Main.showVisits();
+            Main.showPatients();
         }
     }
         else patientValidator.setText("Proszę wypełnić wszystkie pola!!!");

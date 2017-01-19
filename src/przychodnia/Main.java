@@ -24,12 +24,12 @@ public class Main extends Application {
     private static boolean addPatientModal;
     private Stage primaryStage;
 
-    public static void showVisits() throws IOException {
+    public static void showPatients() throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/PatientsView.fxml"));
-        AnchorPane testPane = loader.load();
-        rootLayout.setCenter(testPane);
+        AnchorPane patientsPane = loader.load();
+        rootLayout.setCenter(patientsPane);
 
     }
 
@@ -38,8 +38,8 @@ public class Main extends Application {
         PatientsController patController = loader.getController();
         PatientsController.setPatientsList(patientsList);
         loader.setLocation(Main.class.getResource("view/PatientsView.fxml"));
-        AnchorPane testPane = loader.load();
-        rootLayout.setCenter(testPane);
+        AnchorPane patientsPane = loader.load();
+        rootLayout.setCenter(patientsPane);
 
     }
 
@@ -83,7 +83,7 @@ public class Main extends Application {
         this.primaryStage.setMinHeight(700);
         DBUtil.DBConnect();
         initRootLayout();
-        showVisits();
+        showPatients();
 
     }
 
