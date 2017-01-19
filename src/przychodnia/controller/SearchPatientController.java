@@ -38,12 +38,14 @@ public class SearchPatientController implements Initializable {
 
     @FXML
     public void searchPatient() throws ClassNotFoundException, SQLException, IOException {
+        System.out.println(checkPatientSearchFields());
         try {
             FXMLLoader loader = new FXMLLoader();
+            if(!checkPatientSearchFields()){
             patientsList = PatientsDAO.searchPatient(searchSurname.getText(), searchName.getText(),
                     searchCity.getText(), searchStreet.getText(), searchPesel.getText());
             Main.showSearchedPatients(patientsList);
-            cancelSearch();
+            cancelSearch();}
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
@@ -57,5 +59,12 @@ public class SearchPatientController implements Initializable {
 
     public ObservableList<Patients> getPatientsList() {
         return patientsList;
+    }
+
+    private boolean checkPatientSearchFields() {
+
+        return (searchSurname.getText().trim().isEmpty() && searchCity.getText().trim().isEmpty() &&
+                searchName.getText().trim().isEmpty() && searchPesel.getText().trim().isEmpty() &&
+                searchStreet.getText().trim().isEmpty());
     }
 }

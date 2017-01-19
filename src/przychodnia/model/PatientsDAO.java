@@ -157,7 +157,7 @@ public class PatientsDAO {
         String updateStmt = "INSERT INTO pacjenci " +
                 "(pacjentNazwisko, pacjentImie, pacjentMiasto, pacjentKodPocztowy, pacjentUlica, pacjentNumer, pacjentPesel)" +
                 " VALUES ('" + pSurname + "', '" + pName + "', '" + pCity + "', '" + pZipCode + "', '" +
-                " " + pStreet + "', '" + pNumber + "', '" + pPesel + "')";
+                "" + pStreet + "', '" + pNumber + "', '" + pPesel + "')";
         //Execute DELETE operation
         try {
             DBUtil.dbExecuteUpdate(updateStmt);
