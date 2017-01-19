@@ -25,7 +25,8 @@ public class RootLayoutController {
         Main.showPatients();
     }
 
-    public void goDoctors() {
+    public void goDoctors() throws IOException {
+        Main.showDoctors();
 
     }
 }

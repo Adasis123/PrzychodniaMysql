@@ -33,6 +33,15 @@ public class Main extends Application {
 
     }
 
+    public static void showDoctors() throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/DoctorsView.fxml"));
+        AnchorPane doctorsPane = loader.load();
+        rootLayout.setCenter(doctorsPane);
+
+    }
+
     public static void showSearchedPatients(ObservableList<Patients> patientsList) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         PatientsController patController = loader.getController();
