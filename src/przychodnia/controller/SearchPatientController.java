@@ -1,5 +1,6 @@
 package przychodnia.controller;
 
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,6 +31,8 @@ public class SearchPatientController implements Initializable {
     private JFXTextField searchPesel;
     @FXML
     private JFXTextField searchName;
+    @FXML
+    private JFXTextArea searchValidation;
 
     @FXML
     private void cancelSearch() {
@@ -38,7 +41,6 @@ public class SearchPatientController implements Initializable {
 
     @FXML
     public void searchPatient() throws ClassNotFoundException, SQLException, IOException {
-        System.out.println(checkPatientSearchFields());
         try {
             FXMLLoader loader = new FXMLLoader();
             if(!checkPatientSearchFields()){
@@ -46,6 +48,7 @@ public class SearchPatientController implements Initializable {
                     searchCity.getText(), searchStreet.getText(), searchPesel.getText());
             Main.showSearchedPatients(patientsList);
             cancelSearch();}
+            else searchValidation.setText("Proszę wypełnić przynajmniej jedno pole!");
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
