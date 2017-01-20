@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import przychodnia.controller.PatientsController;
 import przychodnia.model.Patients;
 import przychodnia.util.DBUtil;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -21,7 +22,12 @@ public class Main extends Application {
 
     private static BorderPane rootLayout;
     private static Stage modalPatient;
+
+
+
+    private static Stage modalDoctor;
     private static boolean addPatientModal;
+    private static boolean addDoctorModal;
     private Stage primaryStage;
 
     public static void showPatients() throws IOException {
@@ -33,7 +39,7 @@ public class Main extends Application {
 
     }
 
-    public static void showDoctors() throws IOException {
+    public static void showDoctors() throws IOException, SQLException, ClassNotFoundException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Main.class.getResource("view/DoctorsView.fxml"));
@@ -56,6 +62,10 @@ public class Main extends Application {
         return modalPatient;
     }
 
+    public static Stage getModalDoctor() {
+        return modalDoctor;
+    }
+
     public static void addPatient() throws IOException {
 
         modalPatient = new Stage();
@@ -70,8 +80,30 @@ public class Main extends Application {
 
     }
 
+    public static void addDoctor() throws IOException {
+
+        modalDoctor = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/AddDoctorView.fxml"));
+        AnchorPane addDoctorPane = loader.load();
+        Scene addDoctor= new Scene(addDoctorPane);
+        modalDoctor.setScene(addDoctor);
+        modalDoctor.initModality(Modality.APPLICATION_MODAL);
+        modalDoctor.show();
+        setAddDoctorModal(true);
+
+    }
+
     public static boolean isAddPatientModal() {
         return addPatientModal;
+    }
+
+    public static boolean isAddDoctorModal() {
+        return addDoctorModal;
+    }
+
+    public static void setAddDoctorModal(boolean addDoctorModal) {
+        Main.addDoctorModal = addDoctorModal;
     }
 
     public static void setAddPatientModal(boolean addPatientModal) {

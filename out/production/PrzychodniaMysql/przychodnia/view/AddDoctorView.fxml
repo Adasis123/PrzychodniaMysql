@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="addDoctorsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przychodnia.controller.AddDoctorController">
+    <children>
+        <VBox layoutX="211.0" layoutY="26.0" prefHeight="546.0" prefWidth="422.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <JFXTextField fx:id="dSurname" labelFloat="true" maxWidth="402.0" minWidth="402.0" prefHeight="6.0" prefWidth="402.0" promptText="Nazwisko Lekarza">
+                    <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="35.0" />
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="dName" labelFloat="true" layoutX="20.0" layoutY="30.0" promptText="Imię Lekarza" stylesheets="@AddPatientsView.css">
+                    <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="35.0" />
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="dSpec" labelFloat="true" layoutX="10.0" layoutY="63.0" promptText="Specjalizacja">
+                    <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="35.0" />
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="dPhone" labelFloat="true" layoutX="10.0" layoutY="96.0" promptText="Numer Telfonu">
+                    <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="35.0" />
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextArea fx:id="doctorValidator" disable="true" maxWidth="422.0" minWidth="357.0" prefHeight="24.0" prefWidth="370.0" stylesheets="@AddPatientsView.css">
+                    <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="25.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </JFXTextArea>
+                <HBox prefHeight="68.0" prefWidth="422.0">
+                    <children>
+                        <JFXButton fx:id="addDoctorBtn" onAction="#addDoctor" prefHeight="86.0" prefWidth="209.0" stylesheets="@AddPatientsView.css" text="Dodaj" />
+                        <JFXButton fx:id="cancelDoctorBtn" layoutX="10.0" layoutY="10.0" onAction="#cancelDoctor" prefHeight="68.0" prefWidth="213.0" stylesheets="@AddPatientsView.css" text="Anuluj" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
