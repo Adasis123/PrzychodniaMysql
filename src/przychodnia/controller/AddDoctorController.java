@@ -22,7 +22,7 @@ public class AddDoctorController implements Initializable {
     private JFXTextArea doctorValidator;
 
     @FXML
-    public JFXButton addPatientBtn;
+    public JFXButton addDoctorBtn;
     private Integer dId;
     @FXML
     private JFXTextField dSurname;

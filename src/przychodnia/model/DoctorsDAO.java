@@ -167,7 +167,7 @@ public class DoctorsDAO {
         }
 
         //*************************************
-        //UPDATE an employee's email address
+        //UPDATE 
         //*************************************
         public static void updateDoctor(Integer dId, String dSurname, String dName, String dSpec, String dPhone) throws SQLException, ClassNotFoundException {
             //Declare a UPDATE statement
@@ -175,9 +175,10 @@ public class DoctorsDAO {
                     "SET lekarzNazwisko = '" + dSurname + "',\n" +
                     "lekarzImie = '" + dName + "',\n" +
                     "lekarzSpec = '" + dSpec + "',\n" +
-                    "lekarzTelefon = '" + dPhone + "',\n" +
-                    "WHERE lekrzId = " + dId + ";";
+                    "lekarzTelefon = '" + dPhone + "'\n" +
+                    "WHERE lekarzId = " + dId + ";";
             //Execute UPDATE operation
+            System.out.println(updateStmt);
             try {
                 DBUtil.dbExecuteUpdate(updateStmt);
             } catch (SQLException e) {

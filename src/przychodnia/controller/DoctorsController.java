@@ -24,7 +24,7 @@ import java.sql.SQLException;
 public class DoctorsController extends DoctorsDAO {
 
     @FXML
-    public static JFXButton addPatientBtn;
+    public static JFXButton addDoctorBtn;
     @FXML
     private JFXTextArea doctorsText;
     @FXML
@@ -125,7 +125,7 @@ public class DoctorsController extends DoctorsDAO {
             AddDoctorController addDoc = loader.getController();
             addDoc.setDoctorData(edt_doctor.getdSurname(), edt_doctor.getdName(), edt_doctor.getdSpec(),
                     edt_doctor.getdPhoneNumber());
-            addDoc.addPatientBtn.setText("Edytuj");
+            addDoc.addDoctorBtn.setText("Edytuj");
             dId = edt_doctor.getdId();
             modalDoctor.setScene(addDoctor);
             modalDoctor.initModality(Modality.APPLICATION_MODAL);

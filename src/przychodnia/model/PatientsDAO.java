@@ -197,6 +197,7 @@ public class PatientsDAO {
                 "WHERE pacjentId = " + pId + ";";
         //Execute UPDATE operation
         try {
+            System.out.println(updateStmt);
             DBUtil.dbExecuteUpdate(updateStmt);
         } catch (SQLException e) {
             System.out.print("Error occurred while UPDATE Operation: " + e);
