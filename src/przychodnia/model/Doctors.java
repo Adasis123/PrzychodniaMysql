@@ -21,6 +21,7 @@ public class Doctors {
         this.dId = new SimpleIntegerProperty();
         this.dSurname = new SimpleStringProperty();
         this.dName = new SimpleStringProperty();
+        this.dSpec = new SimpleStringProperty();
         this.dPhoneNumber = new SimpleStringProperty();
 
     }

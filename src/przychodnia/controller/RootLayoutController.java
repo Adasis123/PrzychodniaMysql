@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import przychodnia.Main;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by adam on 05/01/2017.
@@ -25,7 +26,7 @@ public class RootLayoutController {
         Main.showPatients();
     }
 
-    public void goDoctors() throws IOException {
+    public void goDoctors() throws IOException, SQLException, ClassNotFoundException {
         Main.showDoctors();
 
     }
