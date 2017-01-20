@@ -48,7 +48,7 @@
                             </image></ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="btnDeleteDoctor" contentDisplay="TOP" prefHeight="83.0" prefWidth="125.0" text="Usuń">
+                <JFXButton fx:id="btnDeleteDoctor" contentDisplay="TOP" onAction="#deleteDoctor" prefHeight="83.0" prefWidth="125.0" text="Usuń">
                     <graphic>
                         <ImageView fitHeight="66.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                             <image>
