@@ -50,6 +50,15 @@ public class Main extends Application {
 
     }
 
+    public static void showVisits() throws IOException, SQLException, ClassNotFoundException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/VisitsView.fxml"));
+        AnchorPane visitsPane = loader.load();
+        rootLayout.setCenter(visitsPane);
+
+    }
+
     public static void showSearchedPatients(ObservableList<Patients> patientsList) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         PatientsController patController = loader.getController();

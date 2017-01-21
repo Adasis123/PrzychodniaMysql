@@ -18,15 +18,20 @@ public class RootLayoutController {
     }
 
 
-    public void goVisits() throws IOException {
+    public void goVisits() throws IOException, SQLException, ClassNotFoundException {
+
+        Main.showVisits();
 
     }
 
     public void goPatients() throws IOException {
+
         Main.showPatients();
+
     }
 
     public void goDoctors() throws IOException, SQLException, ClassNotFoundException {
+
         Main.showDoctors();
 
     }

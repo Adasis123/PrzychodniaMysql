@@ -1,18 +1,16 @@
 package przychodnia.controller;
 
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TreeItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import przychodnia.model.Visits;
+import przychodnia.model.VisitsDAO;
+
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -24,46 +22,64 @@ public class VisitsController implements Initializable {
     @FXML
     private AnchorPane visitsPane;
     @FXML
-    private JFXTreeTableView<Visit> visitsTree;
+    private TableView<Visits> VisitsView;
+    @FXML
+    private TableColumn<Visits, String> dSurname;
+    @FXML
+    private TableColumn<Visits, String> dName;
+    @FXML
+    private TableColumn<Visits, String> pSurname;
+    @FXML
+    private TableColumn<Visits, String> pName;
+    @FXML
+    private TableColumn<Visits, String> vDate;
+    @FXML
+    private TableColumn<Visits, Integer> vIndex;
+    private static ObservableList<Visits> visitsist;
+
+    @FXML
+    private void populateVisits(ObservableList<Visits> visData) throws ClassNotFoundException {
+        //Set items to the employeeTable
+        VisitsView.setItems(visData);
+    }
+
+    @FXML
+    private void show() throws SQLException, ClassNotFoundException {
+        try {
+            ObservableList<Visits> visitsData = VisitsDAO.searchVisits();
+            populateVisits(visitsData);
+
+        } catch (SQLException e) {
+            System.out.println("Error with getting information from DB.\n" + e);
+            throw e;
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        JFXTreeTableColumn<Visit, String> pName = new JFXTreeTableColumn<>("Pacjent");
-        pName.setPrefWidth(150);
-        pName.setCellValueFactory(param -> param.getValue().getValue().pName);
-
-        JFXTreeTableColumn<Visit, String> dName = new JFXTreeTableColumn<>("Lekarz");
-        dName.setPrefWidth(150);
-        dName.setCellValueFactory(param -> param.getValue().getValue().dName);
-
-        JFXTreeTableColumn<Visit, String> vDate = new JFXTreeTableColumn<>("Data Wizyty");
-        vDate.setPrefWidth(145);
-        vDate.setCellValueFactory(param -> param.getValue().getValue().vDate);
-
-        ObservableList<Visit> users = FXCollections.observableArrayList();
-        users.add(new Visit("Adam Danielczyk", "Ryszard Zieliński", "12/12/2017"));
-        users.add(new Visit("Kuba Nowak", "Ryszard Zieliński", "13/12/2017"));
 
 
-        final TreeItem<Visit> root = new RecursiveTreeItem<Visit>(users, RecursiveTreeObject::getChildren);
-        visitsTree.getColumns().setAll(pName, dName, vDate);
-        visitsTree.setRoot(root);
-        visitsTree.setShowRoot(false);
-
-    }
-
-
-    class Visit extends RecursiveTreeObject<Visit> {
-
-        StringProperty pName;
-        StringProperty dName;
-        StringProperty vDate;
-
-        public Visit(String pName, String dName, String vDate) {
-            this.pName = new SimpleStringProperty(pName);
-            this.dName = new SimpleStringProperty(dName);
-            this.vDate = new SimpleStringProperty(vDate);
+        vIndex.setCellValueFactory(cellData -> cellData.getValue().vIndexProperty().asObject());
+        dSurname.setCellValueFactory(cellData -> cellData.getValue().dSurnameProperty());
+        dName.setCellValueFactory(cellData -> cellData.getValue().dNameProperty());
+        pName.setCellValueFactory(cellData -> cellData.getValue().pNameProperty());
+        pSurname.setCellValueFactory(cellData -> cellData.getValue().pSurnameProperty());
+        vDate.setCellValueFactory(cellData -> cellData.getValue().vDateProperty());
+        if (visitsist != null) {
+//            showSearched();
+//            doctorsList = null;
+        } else try {
+            show();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
+
     }
+
+
+
+
 }
