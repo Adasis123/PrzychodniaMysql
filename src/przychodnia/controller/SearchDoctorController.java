@@ -19,13 +19,13 @@ public class SearchDoctorController {
 
     private ObservableList<Doctors> doctorsList;
     @FXML
-    private JFXTextField searchSurname;
+    public JFXTextField searchSurname;
     @FXML
-    private JFXTextField searchSpec;
+    public JFXTextField searchSpec;
     @FXML
-    private JFXTextField searchName;
+    public JFXTextField searchName;
     @FXML
-    private JFXTextArea searchValidation;
+    public JFXTextArea searchValidation;
 
     @FXML
     private void cancelSearch() {
