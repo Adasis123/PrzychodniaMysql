@@ -62,7 +62,7 @@ public class DoctorsDAO {
         }
 
         //SELECT
-        public static ObservableList<Doctors> searchDoctors(String dSurname, String dName, String dSpec, String dPhone) throws SQLException, ClassNotFoundException {
+        public static ObservableList<Doctors> searchDoctors(String dSurname, String dName, String dSpec) throws SQLException, ClassNotFoundException {
             boolean isQueryvalid = false;
             PreparedStatement ps = null;
             List<String> bindVariables = new ArrayList<>();
@@ -91,13 +91,6 @@ public class DoctorsDAO {
                 }
             }
 
-            if (dPhone.length() > 0 && isQueryvalid) {
-                query.append("AND lekarzTelefon='").append(dPhone).append("'");
-            } else {
-                if (dPhone.length() > 0) {
-                    query.append("lekarzTelfon='").append(dPhone).append("'");
-                }
-            }
 
             try {
                 //Get ResultSet from dbExecuteQuery method

@@ -40,7 +40,7 @@
                             </image></ImageView>
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="btnSearchDoctor" contentDisplay="TOP" prefHeight="83.0" prefWidth="125.0" text="Szukaj">
+                <JFXButton fx:id="btnSearchDoctor" contentDisplay="TOP" onAction="#searchDoctor" prefHeight="83.0" prefWidth="125.0" text="Szukaj">
                     <graphic>
                         <ImageView fitHeight="64.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                             <image>

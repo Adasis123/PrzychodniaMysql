@@ -8,7 +8,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import przychodnia.controller.DoctorsController;
 import przychodnia.controller.PatientsController;
+import przychodnia.model.Doctors;
 import przychodnia.model.Patients;
 import przychodnia.util.DBUtil;
 
@@ -55,6 +57,16 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("view/PatientsView.fxml"));
         AnchorPane patientsPane = loader.load();
         rootLayout.setCenter(patientsPane);
+
+    }
+
+    public static void showSearchedDoctors(ObservableList<Doctors> doctorsList) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        DoctorsController docController = loader.getController();
+        DoctorsController.setDoctorsList(doctorsList);
+        loader.setLocation(Main.class.getResource("view/DoctorsView.fxml"));
+        AnchorPane doctorsPane = loader.load();
+        rootLayout.setCenter(doctorsPane);
 
     }
 
