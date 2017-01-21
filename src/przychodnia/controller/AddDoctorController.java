@@ -3,6 +3,7 @@ package przychodnia.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import przychodnia.Main;
@@ -51,7 +52,7 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     public void addDoctor() throws SQLException, ClassNotFoundException, IOException {
-//        val();
+        val();
         if (!checkPatientFields()){
             if (Main.isAddDoctorModal()) {
                 DoctorsDAO.insertDoctor(dSurname.getText(), dName.getText(), dSpec.getText(), dPhone.getText());
@@ -70,106 +71,64 @@ public class AddDoctorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        val();
+        val();
 
     }
 
-//    private void val() {
-//        RequiredFieldValidator surname_validator = new RequiredFieldValidator();
-//        pSurname.getValidators().add(surname_validator);
-//        surname_validator.setMessage("Proszę wprowadzić poprawne dane");
-//
-//        pSurname.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if (!newValue) {
-//                if (!pSurname.getText().matches("[a-zA-Z]+")) {
-//                    pSurname.setText("");
-//                }
-//                pSurname.validate();
-//            }
-//        });
-//
-//
-//        RequiredFieldValidator name_validator = new RequiredFieldValidator();
-//        pName.getValidators().add(name_validator);
-//        name_validator.setMessage("Proszę wprowadzić poprawne dane");
-//
-//        pName.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if (!newValue) {
-//                if (!pName.getText().matches("[a-zA-Z]+")) {
-//                    pName.setText("");
-//                }
-//                pName.validate();
-//            }
-//        });
-//
-//        RequiredFieldValidator city_validator = new RequiredFieldValidator();
-//        pCity.getValidators().add(city_validator);
-//        city_validator.setMessage("Proszę wprowadzić poprawne dane");
-//
-//        pCity.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if (!newValue) {
-//                if (!pCity.getText().matches("[a-zA-Z]+")) {
-//                    pCity.setText("");
-//                }
-//                pCity.validate();
-//            }
-//        });
-//
-//        RequiredFieldValidator street_validator = new RequiredFieldValidator();
-//        pStreet.getValidators().add(street_validator);
-//        street_validator.setMessage("Proszę wprowadzić poprawne dane");
-//
-//        pStreet.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if (!newValue) {
-//                if (!pStreet.getText().matches("[a-zA-Z]+")) {
-//                    pStreet.setText("");
-//                }
-//                pStreet.validate();
-//            }
-//        });
-//
-//        RequiredFieldValidator number_validator = new RequiredFieldValidator();
-//        pNumber.getValidators().add(number_validator);
-//        number_validator.setMessage("Proszę wprowadzić poprawne dane");
-//
-//        pNumber.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if (!newValue) {
-//                if (!pNumber.getText().matches("^[a-zA-Z0-9/]{1,7}$")) {
-//                    pNumber.setText("");
-//                }
-//                pNumber.validate();
-//            }
-//        });
-//
-//        RequiredFieldValidator zip_code_validator = new RequiredFieldValidator();
-//        pZipCode.getValidators().add(zip_code_validator);
-//        zip_code_validator.setMessage("Proszę wprowadzić poprawne dane");
-//
-//        pZipCode.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if (!newValue) {
-//                if (!pZipCode.getText().matches("^\\d{2}-\\d{3}$")) {
-//                    pZipCode.setText("");
-//                }
-//                pZipCode.validate();
-//            }
-//        });
-//
-//        RequiredFieldValidator pesel_validator = new RequiredFieldValidator();
-//        pPesel.getValidators().add(pesel_validator);
-//        pesel_validator.setMessage("Proszę wprowadzić poprawne dane");
-//
-//        pPesel.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//            if (!newValue) {
-//                if (!pPesel.getText().matches("^\\d{11}$")) {
-//                    pPesel.setText("");
-//                }
-//                pPesel.validate();
-//            }
-//        });
+    private void val() {
+        RequiredFieldValidator surname_validator = new RequiredFieldValidator();
+        dSurname.getValidators().add(surname_validator);
+        surname_validator.setMessage("Proszę wprowadzić poprawne nazwisko");
+
+        dSurname.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!dSurname.getText().matches("[a-zA-Z]+")) {
+                    dSurname.setText("");
+                }
+                dSurname.validate();
+            }
+        });
 
 
-//    }
+        RequiredFieldValidator name_validator = new RequiredFieldValidator();
+        dName.getValidators().add(name_validator);
+        name_validator.setMessage("Proszę wprowadzić poprawne imie");
 
+        dName.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!dName.getText().matches("[a-zA-Z]+")) {
+                    dName.setText("");
+                }
+                dName.validate();
+            }
+        });
+
+        RequiredFieldValidator spec_validator = new RequiredFieldValidator();
+        dSpec.getValidators().add(spec_validator);
+        spec_validator.setMessage("Proszę wprowadzić poprawna specjalizacje");
+
+        dSpec.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!dSpec.getText().matches("[a-zA-Z]+")) {
+                    dSpec.setText("");
+                }
+                dSpec.validate();
+            }
+        });
+
+        RequiredFieldValidator phone_validator = new RequiredFieldValidator();
+        dPhone.getValidators().add(phone_validator);
+        phone_validator.setMessage("Proszę wprowadzić poprawny numer telefonu");
+
+        dPhone.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (!dPhone.getText().matches("^\\d{9}$")) {
+                    dPhone.setText("");
+                }
+                dPhone.validate();
+            }
+        });
+    }
 
     public void setDoctorData(String Surname, String Name, String Spec, String PhoneNumber) {
         dSurname.setText(Surname);
