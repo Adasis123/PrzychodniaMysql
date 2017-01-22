@@ -61,5 +61,18 @@ public class VisitsDAO {
 
     }
 
+    public static void deleteVisit(Integer vId) throws SQLException, ClassNotFoundException {
+        //Declare a DELETE statement
+        String updateStmt = "DELETE FROM wizyty\n" +
+                "WHERE wizytaId =" + vId + ";";
+
+        try {
+            DBUtil.dbExecuteUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while DELETE Operation: " + e);
+            throw e;
+        }
+    }
+
 }
 

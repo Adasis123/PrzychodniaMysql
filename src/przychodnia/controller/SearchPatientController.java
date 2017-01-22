@@ -6,6 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import przychodnia.Main;
 import przychodnia.model.Patients;
 import przychodnia.model.PatientsDAO;
@@ -20,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public class SearchPatientController implements Initializable {
 
-    private ObservableList<Patients> patientsList;
+    private static ObservableList<Patients> patientsList;
     @FXML
     private JFXTextField searchSurname;
     @FXML
@@ -33,10 +37,15 @@ public class SearchPatientController implements Initializable {
     private JFXTextField searchName;
     @FXML
     private JFXTextArea searchValidation;
+    Stage modalPatient;
 
     @FXML
     private void cancelSearch() {
-        PatientsController.getModalPatient().close();
+        if(PatientsVisitsController.isVisitPatient){
+            PatientsVisitsController.getModalPatient().close();
+            PatientsVisitsController.isVisitPatient = false;
+        }
+        else PatientsController.getModalPatient().close();
     }
 
     @FXML
@@ -46,7 +55,19 @@ public class SearchPatientController implements Initializable {
             if(!checkPatientSearchFields()){
             patientsList = PatientsDAO.searchPatient(searchSurname.getText(), searchName.getText(),
                     searchCity.getText(), searchStreet.getText(), searchPesel.getText());
-            Main.showSearchedPatients(patientsList);
+//                Main.showSearchedPatients(patientsList);
+                if (PatientsVisitsController.isVisitPatient){
+                AddVisitController.getModalPatient().close();
+                modalPatient = new Stage();
+                loader.setLocation(Main.class.getResource("view/PatientsVisitView.fxml"));
+                PatientsVisitsController patController = loader.getController();
+                PatientsVisitsController.setPatientsList(patientsList);
+                AnchorPane searchPatientPane = loader.load();
+                Scene searchPatient = new Scene(searchPatientPane);
+                modalPatient.setScene(searchPatient);
+                modalPatient.initModality(Modality.APPLICATION_MODAL);
+                modalPatient.show();}
+                else  Main.showSearchedPatients(patientsList);
             cancelSearch();}
             else searchValidation.setText("Proszę wypełnić przynajmniej jedno pole!");
         } catch (SQLException e) {
@@ -57,6 +78,7 @@ public class SearchPatientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
 
     }
 
@@ -69,5 +91,9 @@ public class SearchPatientController implements Initializable {
         return (searchSurname.getText().trim().isEmpty() && searchCity.getText().trim().isEmpty() &&
                 searchName.getText().trim().isEmpty() && searchPesel.getText().trim().isEmpty() &&
                 searchStreet.getText().trim().isEmpty());
+    }
+
+    public static void setPatientsList(ObservableList<Patients> patientsList) {
+        SearchPatientController.patientsList = patientsList;
     }
 }

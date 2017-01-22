@@ -24,7 +24,7 @@ import java.sql.SQLException;
 public class DoctorsController extends DoctorsDAO {
 
     @FXML
-    public static JFXButton addDoctorBtn;
+    public static JFXButton btnNewDoctor;
     @FXML
     private JFXTextArea doctorsText;
     @FXML

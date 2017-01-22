@@ -10,6 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import przychodnia.controller.DoctorsController;
 import przychodnia.controller.PatientsController;
+import przychodnia.controller.PatientsVisitsController;
 import przychodnia.model.Doctors;
 import przychodnia.model.Patients;
 import przychodnia.util.DBUtil;
@@ -24,7 +25,9 @@ public class Main extends Application {
 
     private static BorderPane rootLayout;
     private static Stage modalPatient;
-
+    private static Stage modalVisit;
+    private static Stage modalSearchPatient;
+    private static Stage modalSearchVisitPatient;
 
 
     private static Stage modalDoctor;
@@ -66,6 +69,17 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("view/PatientsView.fxml"));
         AnchorPane patientsPane = loader.load();
         rootLayout.setCenter(patientsPane);
+
+    }
+
+    public static void showSearchedPatientsVisit(ObservableList<Patients> patientsList) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        PatientsVisitsController patController = loader.getController();
+        PatientsVisitsController.setPatientsList(patientsList);
+        loader.setLocation(Main.class.getResource("view/PatientsVisitView.fxml"));
+
+
+//        patientsPane.setCenter(patientsPane);
 
     }
 
@@ -112,6 +126,33 @@ public class Main extends Application {
         modalDoctor.initModality(Modality.APPLICATION_MODAL);
         modalDoctor.show();
         setAddDoctorModal(true);
+
+    }
+
+    public static void addVisit() throws IOException {
+
+        modalVisit = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/AddVisitView.fxml"));
+        AnchorPane addVisitsPane = loader.load();
+        Scene addVisit = new Scene(addVisitsPane);
+        modalVisit.setScene(addVisit);
+        modalVisit.initModality(Modality.APPLICATION_MODAL);
+        modalVisit.show();
+//        setAddPatientModal(true);
+
+    }
+
+    public static void addVisitSearchPatient() throws IOException {
+
+        modalSearchPatient = new Stage();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/AddVisitSearchPatient.fxml"));
+        BorderPane addVisitSearchPatient = loader.load();
+        Scene addVisitPatient = new Scene(addVisitSearchPatient);
+        modalSearchPatient.setScene(addVisitPatient);
+        modalSearchPatient.initModality(Modality.NONE);
+        modalSearchPatient.show();
 
     }
 

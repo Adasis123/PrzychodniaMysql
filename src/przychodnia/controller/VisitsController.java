@@ -1,14 +1,17 @@
 package przychodnia.controller;
 
+import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import przychodnia.Main;
 import przychodnia.model.Visits;
 import przychodnia.model.VisitsDAO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -35,10 +38,12 @@ public class VisitsController implements Initializable {
     private TableColumn<Visits, String> vDate;
     @FXML
     private TableColumn<Visits, Integer> vIndex;
-    private static ObservableList<Visits> visitsist;
+    private static ObservableList<Visits> visitsList;
+    @FXML
+    private JFXTextArea visitsText;
 
     @FXML
-    private void populateVisits(ObservableList<Visits> visData) throws ClassNotFoundException {
+    private void populateVisits(ObservableList<Visits> visData) {
         //Set items to the employeeTable
         VisitsView.setItems(visData);
     }
@@ -55,8 +60,12 @@ public class VisitsController implements Initializable {
         }
     }
 
+    private void showSearched() {
+        populateVisits(visitsList);
+    }
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb){
 
 
         vIndex.setCellValueFactory(cellData -> cellData.getValue().vIndexProperty().asObject());
@@ -65,9 +74,10 @@ public class VisitsController implements Initializable {
         pName.setCellValueFactory(cellData -> cellData.getValue().pNameProperty());
         pSurname.setCellValueFactory(cellData -> cellData.getValue().pSurnameProperty());
         vDate.setCellValueFactory(cellData -> cellData.getValue().vDateProperty());
-        if (visitsist != null) {
-//            showSearched();
-//            doctorsList = null;
+        if (visitsList != null) {
+            System.out.println("Jest");
+            showSearched();
+            visitsList = null;
         } else try {
             show();
         } catch (SQLException e) {
@@ -79,7 +89,23 @@ public class VisitsController implements Initializable {
 
     }
 
+    @FXML
+    private void deleteVisit() throws SQLException, ClassNotFoundException {
+        visitsText.setText("");
+       Visits del_visit = VisitsView.getSelectionModel().getSelectedItem();
+        if (del_visit != null) {
+            try {
+                VisitsDAO.deleteVisit(del_visit.getvId());
+                show();
+            } catch (SQLException e) {
+                throw e;
+            }
+        } else visitsText.setText("Proszę wybrać lekarza!!!");
+    }
 
-
-
+    @FXML
+    public void addVisit() throws IOException, SQLException, ClassNotFoundException {
+//        doctorsText.setText("");
+        Main.addVisit();
+    }
 }

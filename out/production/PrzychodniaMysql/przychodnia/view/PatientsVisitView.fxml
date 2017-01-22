@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="patientsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@PatientsView.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="przychodnia.controller.PatientsVisitsController">
+    <children>
+        <TableView fx:id="PatientsView" layoutX="33.0" layoutY="65.0" prefHeight="388.0" prefWidth="593.0">
+            <columns>
+                <TableColumn fx:id="pIndex" prefWidth="75.0" text="#" />
+                <TableColumn fx:id="pSurname" prefWidth="75.0" text="Nazwisko" />
+                <TableColumn fx:id="pName" prefWidth="75.0" text="Imię" />
+                <TableColumn fx:id="pCity" prefWidth="75.0" text="Miasto" />
+                <TableColumn fx:id="pZipCode" prefWidth="75.0" text="Kod Pocztowy" />
+                <TableColumn fx:id="pStreet" prefWidth="75.0" text="Ulica" />
+                <TableColumn fx:id="pNumber" prefWidth="75.0" text="Numer " />
+                <TableColumn fx:id="pPesel" prefWidth="75.0" text="Pesel" />
+            </columns>
+        </TableView>
+        <VBox layoutX="680.0" layoutY="65.0" prefHeight="372.0" prefWidth="119.0">
+            <children>
+                <JFXButton fx:id="newPatientBtn" contentDisplay="TOP" disable="true" prefHeight="83.0" prefWidth="125.0" text="Dodaj">
+                    <graphic>
+                        <ImageView fitHeight="66.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/add.png" />
+                            </image></ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnEditPatient" contentDisplay="TOP" disable="true" prefHeight="83.0" prefWidth="125.0" text="Edytuj">
+                    <graphic>
+                        <ImageView fitHeight="66.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/edit.png" />
+                            </image></ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnSearchPatient" contentDisplay="TOP" onAction="#searchPatient" prefHeight="83.0" prefWidth="125.0" text="Szukaj">
+                    <graphic>
+                        <ImageView fitHeight="64.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/search.png" />
+                            </image></ImageView>
+                    </graphic>
+                </JFXButton>
+                <JFXButton fx:id="btnDeletePatient" contentDisplay="TOP" disable="true" prefHeight="83.0" prefWidth="125.0" text="Usuń">
+                    <graphic>
+                        <ImageView fitHeight="66.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/user.png" />
+                            </image></ImageView>
+                    </graphic>
+                </JFXButton>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="25.0" prefHeight="17.0" prefWidth="283.0" text="PACJENCI" textAlignment="CENTER">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <JFXTextArea fx:id="patientsText" disable="true" editable="false" focusColor="#f2efef" layoutX="74.0" layoutY="463.0" prefHeight="38.0" unFocusColor="#f2efef" wrapText="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </JFXTextArea>
+    </children>
+</AnchorPane>
