@@ -50,7 +50,7 @@
                 <HBox prefHeight="68.0" prefWidth="422.0">
                     <children>
                         <JFXButton fx:id="addPatientBtn" prefHeight="68.0" prefWidth="241.0" stylesheets="@AddPatientsView.css" text="Dodaj" />
-                        <JFXButton fx:id="cancelPatientBtn" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="241.0" stylesheets="@AddPatientsView.css" text="Anuluj" />
+                        <JFXButton fx:id="cancelPatientBtn" layoutX="10.0" layoutY="10.0" onAction="#cancelVisit" prefHeight="68.0" prefWidth="241.0" stylesheets="@AddPatientsView.css" text="Anuluj" />
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />
@@ -61,7 +61,7 @@
       <VBox alignment="BOTTOM_RIGHT" layoutX="403.0" prefHeight="266.0" prefWidth="59.0">
          <children>
             <JFXButton fx:id="btnSearchPatient" onAction="#searchPatient" prefHeight="128.0" prefWidth="59.0" text="Szukaj" />
-            <JFXButton prefHeight="138.0" prefWidth="60.0" text="Szukaj" />
+            <JFXButton fx:id="btnSeaerchDoctor" onAction="#searchDoctor" prefHeight="138.0" prefWidth="60.0" text="Szukaj" />
          </children>
       </VBox>
     </children>

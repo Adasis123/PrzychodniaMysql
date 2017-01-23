@@ -46,8 +46,29 @@ public class PatientsVisitsController extends PatientsDAO {
     private TableColumn<Patients, String> pPesel;
     @FXML
     private TableColumn<Patients, Integer> pIndex;
+
+    public static void setpVSurname(String pVSurname) {
+        PatientsVisitsController.pVSurname = pVSurname;
+    }
+
+    public static String getpVSurname() {
+        return pVSurname;
+    }
+
+    public static String pVSurname;
+
+    public static void setpVName(String pVName) {
+        PatientsVisitsController.pVName = pVName;
+    }
+
+    public static String getpVName() {
+        return pVName;
+    }
+
+    public static String pVName;
     public static Integer pId;
     private static Stage modalPatient;
+    private static Stage modalVisit;
     private static ObservableList<Patients> patientsList;
     public static boolean isVisitPatient;
 
@@ -90,8 +111,9 @@ public class PatientsVisitsController extends PatientsDAO {
         if (patientsList != null) {
             showSearched();
             patientsList = null;
+            isVisitPatient = true;
         } else show();
-        isVisitPatient = true;
+
     }
 
     @FXML
@@ -100,50 +122,35 @@ public class PatientsVisitsController extends PatientsDAO {
         PatientsView.setItems(empData);
     }
 
-    @FXML
-    public void addPatient() throws IOException, SQLException, ClassNotFoundException {
-        patientsText.setText("");
-        Main.addPatient();
+    public static Stage getModalVisit() {
+        return modalVisit;
     }
 
     @FXML
-    private void deletePatient() throws SQLException, ClassNotFoundException {
-        patientsText.setText("");
-        Patients del_patient = PatientsView.getSelectionModel().getSelectedItem();
-        if (del_patient != null) {
-            try {
-                PatientsDAO.deletePatient(del_patient.getpId());
-                show();
-            } catch (SQLException e) {
-                throw e;
-            }
-        } else patientsText.setText("Proszę wybrać pacjenta!!!");
-    }
+    private void addPatVisit() throws IOException {
+        Patients search_patient = PatientsView.getSelectionModel().getSelectedItem();
+        pVName = search_patient.getpName();
+        pVSurname = search_patient.getpSurname();
 
-    public static Integer getpId() {
-        return pId;
-    }
 
-    @FXML
-    private void editPatient() throws IOException {
-        patientsText.setText("");
-        Patients edt_patient = PatientsView.getSelectionModel().getSelectedItem();
-        if (edt_patient != null) {
-            modalPatient = new Stage();
+        if (search_patient != null) {
+            modalVisit = new Stage();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/AddPatientView.fxml"));
-            AnchorPane addPatientPane = loader.load();
-            Scene addPatient = new Scene(addPatientPane);
-            AddPatientController addPat = loader.getController();
-            addPat.setPatientData(edt_patient.getpSurname(), edt_patient.getpName(), edt_patient.getpCity(),
-                    edt_patient.getpZipCode(), edt_patient.getpStreet(), edt_patient.getpNumber(),
-                    edt_patient.getpPesel());
-            addPat.addPatientBtn.setText("Edytuj");
-            pId = edt_patient.getpId();
-            modalPatient.setScene(addPatient);
-            modalPatient.initModality(Modality.APPLICATION_MODAL);
-            modalPatient.show();
+            loader.setLocation(Main.class.getResource("view/AddVisitView.fxml"));
+            AnchorPane addVisitPane = loader.load();
+            Scene addVisit = new Scene(addVisitPane);
+            AddVisitController addPat = loader.getController();
+            addPat.setPatientData(search_patient.getpSurname(), search_patient.getpName());
+//            addPat.addPatientBtn.setText("Edytuj");
+//            pId = edt_patient.getpId();
+            modalVisit.setScene(addVisit);
+            modalVisit.initModality(Modality.APPLICATION_MODAL);
+            modalVisit.show();
+
+            AddVisitController.getModalPatient().close();
+            DoctorVisitsController.getModalVisit().close();
         } else patientsText.setText("Proszę wybrać pacjenta!!!");
+
     }
 
     @FXML

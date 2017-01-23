@@ -25,6 +25,11 @@ public class Main extends Application {
 
     private static BorderPane rootLayout;
     private static Stage modalPatient;
+
+    public static Stage getModalVisit() {
+        return modalVisit;
+    }
+
     private static Stage modalVisit;
     private static Stage modalSearchPatient;
     private static Stage modalSearchVisitPatient;

@@ -19,10 +19,30 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by adam on 04/01/2017.
+ * Created by adam on 23/01/2017.
  */
-public class DoctorsController extends DoctorsDAO {
+public class DoctorVisitsController extends DoctorsDAO {
 
+    public static String dVSurname;
+    public static boolean isVisitDoctor;
+
+    public static String getdVSurname() {
+        return dVSurname;
+    }
+
+    public static void setdVSurname(String dVSurname) {
+        DoctorVisitsController.dVSurname = dVSurname;
+    }
+
+    public static String getdVName() {
+        return dVName;
+    }
+
+    public static void setdVName(String dVName) {
+        DoctorVisitsController.dVName = dVName;
+    }
+    private static Stage modalVisit;
+    public static String dVName;
     @FXML
     public static JFXButton btnNewDoctor;
     @FXML
@@ -79,6 +99,7 @@ public class DoctorsController extends DoctorsDAO {
         if (doctorsList != null) {
             showSearched();
             doctorsList = null;
+            isVisitDoctor = true;
         } else show();
 
     }
@@ -89,50 +110,6 @@ public class DoctorsController extends DoctorsDAO {
         DoctorsView.setItems(docData);
     }
 
-    @FXML
-    public void addDoctor() throws IOException, SQLException, ClassNotFoundException {
-        doctorsText.setText("");
-        Main.addDoctor();
-    }
-
-    @FXML
-    private void deleteDoctor() throws SQLException, ClassNotFoundException {
-        doctorsText.setText("");
-        Doctors del_doctor = DoctorsView.getSelectionModel().getSelectedItem();
-        if (del_doctor != null) {
-            try {
-                DoctorsDAO.deleteDoctor(del_doctor.getdId());
-                show();
-            } catch (SQLException e) {
-                throw e;
-            }
-        } else doctorsText.setText("Proszę wybrać lekarza!!!");
-    }
-
-    public static Integer getdId() {
-        return dId;
-    }
-
-    @FXML
-    private void editDoctor() throws IOException {
-        doctorsText.setText("");
-        Doctors edt_doctor = DoctorsView.getSelectionModel().getSelectedItem();
-        if (edt_doctor != null) {
-            modalDoctor = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("view/AddDoctorView.fxml"));
-            AnchorPane addDoctorPane = loader.load();
-            Scene addDoctor = new Scene(addDoctorPane);
-            AddDoctorController addDoc = loader.getController();
-            addDoc.setDoctorData(edt_doctor.getdSurname(), edt_doctor.getdName(), edt_doctor.getdSpec(),
-                    edt_doctor.getdPhoneNumber());
-            addDoc.addDoctorBtn.setText("Edytuj");
-            dId = edt_doctor.getdId();
-            modalDoctor.setScene(addDoctor);
-            modalDoctor.initModality(Modality.APPLICATION_MODAL);
-            modalDoctor.show();
-        } else doctorsText.setText("Proszę wybrać lekarza!!!");
-    }
 
     @FXML
     private void searchDoctor() throws IOException {
@@ -146,12 +123,41 @@ public class DoctorsController extends DoctorsDAO {
         modalDoctor.initModality(Modality.APPLICATION_MODAL);
         modalDoctor.show();
     }
-//
+
     public static void setDoctorsList(ObservableList<Doctors> doctorsList) {
-        DoctorsController.doctorsList = doctorsList;
+        DoctorVisitsController.doctorsList = doctorsList;
     }
 
     public static Stage getModalDoctor() {
         return modalDoctor;
+    }
+
+    public static Stage getModalVisit() {
+        return modalVisit;
+    }
+
+    @FXML
+    private void addVisitDoctor() throws IOException {
+        Doctors search_doctor = DoctorsView.getSelectionModel().getSelectedItem();
+        dVName = search_doctor.getdName();
+        dVSurname = search_doctor.getdSurname();
+
+        if (search_doctor != null) {
+            modalVisit = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/AddVisitView.fxml"));
+            AnchorPane addVisitPane = loader.load();
+            Scene addVisit = new Scene(addVisitPane);
+            AddVisitController addDoc = loader.getController();
+//            addDoc.setDoctorData(search_patient.getpSurname(), search_patient.getpName());
+//            addPat.addPatientBtn.setText("Edytuj");
+//            pId = edt_patient.getpId();
+            modalVisit.setScene(addVisit);
+            modalVisit.initModality(Modality.APPLICATION_MODAL);
+            modalVisit.show();
+            PatientsVisitsController.getModalVisit().close();
+            AddVisitController.getModalDoctor().close();
+        } else doctorsText.setText("Proszę wybrać lekarza!!!");
+
     }
 }

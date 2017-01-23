@@ -59,6 +59,7 @@
                             </image></ImageView>
                     </graphic>
                 </JFXButton>
+            <JFXButton fx:id="addPatientVisit" prefHeight="27.0" onAction="#addPatVisit" prefWidth="124.0" text="COS" />
             </children>
         </VBox>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="25.0" prefHeight="17.0" prefWidth="283.0" text="PACJENCI" textAlignment="CENTER">

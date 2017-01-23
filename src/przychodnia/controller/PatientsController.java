@@ -89,6 +89,7 @@ public class PatientsController extends PatientsDAO {
             showSearched();
             patientsList = null;
         } else show();
+
     }
 
     @FXML
